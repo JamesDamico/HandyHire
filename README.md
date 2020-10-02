@@ -14,6 +14,6 @@ More to come…..
 - **James D'Amico** - Developer - [Github](https://github.com/JamesDamico)
 - **Donovan O'Dowd** - Developer - [Github](https://github.com/Donovan-27)
 - **Siam Hoque** - Developer - [Github](https://github.com/Siamuel1)
-- **Vincent Ewart** - Developer - [Github](https://github.com/JamesDamico)
+- **Vincent Ewart** - Developer - [Github](https://github.com/Vinrox723)
 - **Steven Ebby** - Developer - [Github](https://github.com/ebbys10)
 
