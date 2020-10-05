@@ -46,26 +46,32 @@ p{
     padding: 0 18px;
 }
 
+.nav-item:hover {
+    background-color: #fabc3d;
+}
+
 .nav-link{
     font-size: 1.2rem;
     font-family: "Montserrat-Light";
 }
 
-/* Download Buttons */
 
-.download-button{
-    margin: 5% 3% 5% 0;
-}
-
-/* Title Image */
+/* Title */
 
 .title-image{
     width: 100%;
 }
 
+#browseJobsTitleButton {
+    background-color: #fabc3d;
+    border-color: #fabc3d;
+    margin-top: 3rem;
+}
+
 /* How It Works */
 #how-it-works{
     padding: 7% 15%;
+    text-align: center;
 }
 
 .how-it-works-box{
@@ -117,4 +123,14 @@ footer{
 
 .signup-section {
     padding: 0.3rem 0rem;
+}
+
+#loginError {
+    color: red;
+    display: none;
+}
+
+#signupError {
+    color: red;
+    display: none;
 }
