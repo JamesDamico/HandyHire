@@ -10,6 +10,7 @@ const setupUI = (user) => {
         loggedInLinks.forEach(item => item.style.display = "block");
         loggedOutLinks.forEach(item => item.style.display = "none");
         document.querySelector("#accountEmail").textContent = user.email;
+        document.querySelector("#contactEmail").value = user.email;
     } else {
         //toggle ui elements
         loggedInLinks.forEach(item => item.style.display = "none");
