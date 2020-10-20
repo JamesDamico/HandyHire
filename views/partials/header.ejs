@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="../CSS/styles.css">
 
   <!-- Font Awesome -->
-  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"></script>
 
   <!-- Bootstrap Scripts -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -25,7 +25,7 @@
   <!--***********************-->
   <!--**** Title Section ****-->
   <!--***********************-->
-  <section class="colored-section" id="title">
+  <section id="header">
 
     <div class="container-fluid">
 
@@ -63,60 +63,9 @@
           </ul>
         </div>
       </nav>
-
-      <!-- Title -->
-
-      <div class="row">
-
-        <div class="col-lg-6">
-          <h1 class="big-heading">Not a Job Too Small, Find a Handy Man in your area!</h1>
-          <button type="button" class="signup btn btn-dark btn-lg" id="browseJobsTitleButton" onclick="window.location.href='browseHandyMen.html';">Browse Handy Men</button>
-        </div>
-        <div class="col-lg-6">
-          <img src="../Images/handyman.png" alt="Handy Man" srcset="">
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!--******************************-->
-  <!--**** How It Works Section ****-->
-  <!--******************************-->
-  <section id="how-it-works">
-    <h1>Welcome to Handy Hire!</h1>
-    <p>Handy Hire is an app that allows Handy Men to create and customize their own profile to their hearts content. When they're finished creating their account, they
-      can start sharing their profile with people in need of a Handy Man. People can also visit the Handy Hire website and browse through all the categories of Handy Men available.
-    </p>
-    <div class="row">
-      <div class="how-it-works-box col-lg-4">
-        <i class="icon far fa-address-card fa-4x"></i>        
-        <h3>Create an Account</h3>
-        <p>Personalize your account to best describe your business.</p>
-      </div>
-  
-      <div class="how-it-works-box col-lg-4">
-        <i class="icon far fa-clipboard fa-4x"></i>
-        <h3>Publish your Page</h3>
-        <p>Get seen on Handy Hire by publishing your page.</p>
-      </div>
-  
-      <div class="how-it-works-box col-lg-4">
-        <i class="icon fas fa-check-circle fa-4x"></i>        
-        <h3>Wait to be Contacted</h3>
-        <p>As people visit your page, wait for people to start contacting you with work needed to be done.</p>
-      </div>
     </div>
   </section>
-
-  <footer>
-    <div class="container-fluid">
-      <p>© Copyright 2020 <a href="index.html">Handy Hire</a></p>
-    </div>
-  </footer>
-
+      
   <!--*********************-->
   <!--**** Login Modal ****-->
   <!--*********************-->
@@ -229,46 +178,3 @@
        </div>
     </div>
   </div>
-
-  <!--*****************-->
-  <!--**** Scripts **** -->
-  <!--*****************-->
-
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
-
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-      https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
-
-  <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-      apiKey: "AIzaSyBtMnhy2nlpayZsySgrs92rtuo2KlpNuvs",
-      authDomain: "handyhire-b9356.firebaseapp.com",
-      databaseURL: "https://handyhire-b9356.firebaseio.com",
-      projectId: "handyhire-b9356",
-      storageBucket: "handyhire-b9356.appspot.com",
-      messagingSenderId: "129457015116",
-      appId: "1:129457015116:web:c90ec1f6faac5a863aa7e9",
-      measurementId: "G-8NDH1VMVJG"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-
-    //Make Auth and Firestore References
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-  </script>
-
-  <!-- Javascript Scripts -->
-  <script src="../Javascript/auth.js"></script>
-</body>
-</html>
-
-

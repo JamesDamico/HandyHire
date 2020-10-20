@@ -1,15 +1,8 @@
+/* ******* */
+/* General */
+/* ******* */
 body{
     font-family: "Montserrat";
-}
-
-#title{
-    background-color: lightblue;
-    color: #fff;
-    /* position:absolute;
-    top:0px;
-    right:0px;
-    bottom:0px;
-    left:0px; */
 }
 
 .container-fluid{
@@ -30,10 +23,12 @@ p{
     color: #8f8f8f;
 }
 
+/* ************** */
 /* Navigation Bar */
-
+/* ************** */
 .navbar{
-    padding: 0 0 4.5rem;
+    /* padding: 0 0 4.5rem; */
+    background-color: lightblue;
 }
 
 .navbar-brand{
@@ -55,8 +50,22 @@ p{
     font-family: "Montserrat-Light";
 }
 
+#header{
+    background-color: lightblue;
+}
 
+/* ***** */
 /* Title */
+/* ***** */
+#title{
+    background-color: lightblue;
+    color: #fff;
+    /* position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px; */
+}
 
 .title-image{
     width: 100%;
@@ -68,7 +77,9 @@ p{
     margin-top: 3rem;
 }
 
+/* ************ */
 /* How It Works */
+/* ************ */
 #how-it-works{
     padding: 7% 15%;
     text-align: center;
@@ -85,8 +96,9 @@ p{
     margin-bottom: 1rem;
 }
 
+/* ****** */
 /* Footer */
-
+/* ****** */
 footer{
     text-align: center;
     /* position: absolute;
@@ -134,3 +146,8 @@ footer{
     color: red;
     display: none;
 }
+
+/* ************ */
+/* User Profile */
+/* ************ */
+
