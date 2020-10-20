@@ -17,7 +17,12 @@ app.get("/", (req, res)=>{
 
 //Edit Profile route
 app.get("/editProfile", (req, res)=>{
-    res.render("homePage.ejs");
+    res.render("editProfile.ejs");
+});
+
+//User Profile route
+app.get("/userProfile", (req, res)=>{
+    res.render("userProfile.ejs");
 });
 
 //Browse route
