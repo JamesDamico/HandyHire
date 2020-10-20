@@ -1,5 +1,128 @@
 <%- include("../views/partials/header.ejs") -%>
 
-<!-- HTML Here @Steven -->
+<section>
+  <!--*********************-->
+  <!--* Profile Container *-->
+  <!--*********************-->
+  <form id = "editProfileForm">
+    <div class = "container-fluid">
+      <!--Profile Header-->
+      <div class = "row">
+        <div class = " col-lg-12 profile-header">
+          <div class = "profile-img">
+            <img id = "handyManImage" src = "../Images/handyman.png"  alt="yourImage">
+          </div>
+          <div class = "profile-header-info">
+            <div class="form-group">
+              <h4>Edit Profile</h4>
+              <input type = "text" class = "form-control" id = "handyManName" placeholder = "Handy Man">
+            </div>
+            <div class="form-group">
+              <input type = "text" class = "form-control" id = "handyManAddress" placeholder = "Address">
+            </div>
+          </div>
+          <div class = "profile-option">
+            <button class = "btn btn-info btn-round">Save <i class="fas fa-check-circle"></i></button>
+          </div>
+        </div>
+      </div><!--Ends Profile Header-->
+      <!--Profile Body-->
+      <div class = "row profile-body">
+        <div class="col-lg-3 profile-body-info">
+          <div class="form-group">
+            <input type = "text" class = "form-control" id = "handyManPhone" placeholder="888-888-8888"/>
+          </div>
+          <div class="form-group">
+            <input type = "email" class = "form-control" id = "handyManEmail" placeholder= "handyman@HandyHire.us"/>
+          </div>
+          <div class="form-group">
+            <h4>Bio</h4>
+          <input type = "text" class = "form-control" id = "handyManBio" placeholder = "Lorem ipsum dolor sit amet" />
+          </div>
+          <div class="form-group">
+            <input type = "text" class = "form-control" id = "handyManCompany" placeholder = "Company Name"/>
+          </div>
+          <!--
+          <div class = "profile-rating">
+            <div><h3 id = "handyManRating">4.8</h3></div>
+            <div class = "profile-stars">
+              <i class = "fa fa-star"></i>
+              <i class = "fa fa-star"></i>
+              <i class = "fa fa-star"></i>
+              <i class = "fa fa-star"></i>
+              <i class = "fa fa-star"></i>
+              <p><span id ="handyManReviewCounter">123</span> reviews</p>
+            </div>
+          </div>
+          -->
+        </div><!--Ends Profile Body Info Column-->
+
+        <div class="col-lg-9 profile-dashboard">
+          <div class = "row tab">   
+            <button onclick = "switchTab(event, 'jobs')" class = "col-lg-6 tab-jobs btn btn-info btn-round">Completed Jobs</button>
+            <button onclick= "switchTab(event, 'certifications')" class = "col-lg-6 tab-certifications btn btn-info btn-round">Certifications</button>
+            <!--
+            <button onclick= "switchTab(event, 'reviews')" class = "col-lg-4 tab-reviews btn btn-info btn-round">Reviews</button>
+            -->
+          </div>
+          <div id = "jobs"class = "row tab-content center">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Job Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">View</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Cabinet</td>
+                  <td>Refacing</td>
+                  <td><img src="../Images/handyman.png" alt="" border=3 height=100 width=100></img></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id = "certifications" class = "row tab-content">
+            <h1>Your Certifications</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <!--
+          <div id = "reviews" class = "row tab-content">
+            <h1>Your Reviews</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          -->
+        </div><!--Ends Profile Dashboard Column-->
+      </div><!--Ends Profile Body-->
+    </div><!--Ends Profile Container-->
+  </form>
+</section>
+
+<!--*********************-->
+<!--** Profile Script ***-->
+<!--*********************-->
+<script>
+  function switchTab(event, tabContentName){
+    //hides tab contents that are not selected
+    var tabContent = document.getElementsByClassName("tab-content");
+    for (x = 0; x < tabContent.length; x++)
+    {
+      tabContent[x].style.display = "none";
+    }
+
+    var tab = document.getElementsByClassName("tab");
+    //sets tab that are not selected as inactive
+    for (x = 0; x < tab.length; x++)
+    {
+      tab[x].className = tab[x].className.replace("active", "");
+    }
+    //sets active tab content to be visible
+    document.getElementById(tabContentName).style.display = "block";
+    evt.currentTarget.className +="active";
+  }
+</script>
 
 <%- include("../views/partials/footer.ejs") -%>
