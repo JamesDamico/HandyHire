@@ -51,13 +51,16 @@
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" id="accountNavItem" data-toggle="dropdown">Account</a>
               <div class="dropdown-menu ">
-                 <a class= "login dropdown-item loggedOut" data-toggle="modal" data-target="#loginModal"><i class="fas fa-user"></i> Log In</a>
-                 <div class="dropdown-divider loggedOut"></div>
-                 <a class= "signup dropdown-item loggedOut" data-toggle="modal" data-target="#signupModal"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
-                 <div class="dropdown-divider loggedOut"></div>
-                 <a class= "signup dropdown-item loggedIn" id="accountEmail" href="/editProfile">Email</a>
+                <%if(user){%>
+                 <a class= "signup dropdown-item loggedIn" id="accountEmail" href="/editProfile"><i class="fas fa-user-edit"></i> Edit Account</a>
                  <div class="dropdown-divider loggedIn"></div>
-                 <a class= "signup dropdown-item loggedIn" id="logout" href="/">Log Out</a>
+                 <a class= "signup dropdown-item loggedIn" id="logout" href="/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                <%} else {%> 
+                  <a class= "login dropdown-item loggedOut" href="/login"><i class="fas fa-user"></i> Log In</a>
+                  <div class="dropdown-divider loggedOut"></div>
+                  <a class= "signup dropdown-item loggedOut" href="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+                <%}%>
+                 <div class="dropdown-divider loggedOut"></div>
               </div>
            </li>
           </ul>
@@ -66,77 +69,6 @@
     </div>
   </section>
       
-  <!--*********************-->
-  <!--**** Login Modal ****-->
-  <!--*********************-->
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-title text-center">
-            <h4>Login</h4>
-          </div>
-          <div class="d-flex flex-column text-center">
-            <form id="loginForm">
-              <div class="form-group">
-                <input type="email" class="form-control" id="loginEmail"placeholder="Your email address...">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" id="loginPassword" placeholder="Your password...">
-              </div>
-              <div class="form-group">
-                <p id="loginError" class="none">Wrong username or password!</p>
-              </div>
-              <button type="submit" class="btn btn-info btn-block btn-round">Login</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--**********************-->
-  <!--**** Signup Modal ****-->
-  <!--**********************-->
-  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-title text-center">
-            <h4>Sign Up</h4>
-          </div>
-          <div class="d-flex flex-column text-center">
-            <form id="signupForm">
-              <div class="form-group">
-                <input type="email" class="form-control" id="signupEmail"placeholder="Your email address...">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" id="signupPassword" placeholder="Your password...">
-              </div>
-              <!-- <div class="form-group">
-                <input type="password" class="form-control" id="signupPasswordConfirm" placeholder="Confirm password...">
-              </div> -->
-              <div class="form-group">
-                <p id="signupError" class="none">Error</p>
-              </div>
-              <button type="submit" class="btn btn-info btn-block btn-round">Create Account</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!--**********************-->
   <!--****Contact Modal**** -->
   <!--**********************-->
