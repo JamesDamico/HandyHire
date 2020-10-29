@@ -9,6 +9,8 @@ More to come…..
 
 ### Built With
 - Visual Studio Code
+- Node.JS
+- MongoDB
 
 ## Authors
 - **James D'Amico** - Developer - [Github](https://github.com/JamesDamico)
