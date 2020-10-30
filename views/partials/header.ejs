@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <title>Handy Hire</title>
 
+  <!-- Favicon -->
+  <link rel="icon" href="../Images/handyman.png">
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
 
@@ -46,13 +49,13 @@
               <a class="nav-link" data-toggle="modal" data-target="#contactModal">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#how-it-works">How It Works</a>
+              <a class="nav-link" href="/#how-it-works">How It Works</a>
             </li>
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" id="accountNavItem" data-toggle="dropdown">Account</a>
               <div class="dropdown-menu ">
                 <%if(user){%>
-                 <a class= "signup dropdown-item loggedIn" id="accountEmail" href="/editProfile"><i class="fas fa-user-edit"></i> Edit Account</a>
+                 <a class= "signup dropdown-item loggedIn" id="accountEmail" href="/settings"><i class="fas fa-user-edit"></i> Edit Account</a>
                  <div class="dropdown-divider loggedIn"></div>
                  <a class= "signup dropdown-item loggedIn" id="logout" href="/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                 <%} else {%> 

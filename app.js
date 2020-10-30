@@ -44,8 +44,15 @@ mongoose.connect(process.env.MONGO,
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema({
-    username: String,
-    password: String,
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    companyName: String,
+    bio: String,
+    phoneNumber: String,
+    businessEmail: String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -81,17 +88,26 @@ app.get("/signup", (req, res)=>{
 });
 
 //Edit Profile Route
-app.get("/editProfile", (req, res)=>{
+app.get("/settings", (req, res)=>{
     if(req.isAuthenticated()){
-        res.render("editProfile.ejs");
+        res.render("settings.ejs");
     } else {
         res.render("login.ejs");
     }
 });
 
 //User Profile Route
-app.get("/userProfile", (req, res)=>{
-    res.render("userProfile.ejs");
+app.get("/users/:username", (req, res)=>{
+    
+    User.findOne({username: req.params.username}, (err, foundUser)=>{
+        if(foundUser){
+            res.render("userProfile.ejs", {
+                foundUser: foundUser
+            });
+        } else {
+            res.redirect("/");
+        }
+    });
 });
 
 //Browse Route
@@ -111,7 +127,7 @@ app.post("/login", passport.authenticate("local", {failureFlash: true, failureRe
 
 //Signup Post Route
 app.post("/signup", (req, res)=>{
-    User.register({username: req.body.username}, req.body.password, function(err, user){
+    User.register({username: req.body.username, email: req.body.email}, req.body.password, function(err, user){
         if(!err){
             passport.authenticate("local")(req, res, function(){
                 res.redirect("/");
@@ -124,8 +140,35 @@ app.post("/signup", (req, res)=>{
     });
 });
 
+//Settings Post Route
+app.post("/settings", (req, res)=>{
+    // companyName: String,
+    // bio: String,
+    // phoneNumber: String
+    const companyName = req.body.companyName;
+    const bio = req.body.bio;
+    const phoneNumber = req.body.phoneNumber;
+    const businessEmail = req.body.businessEmail;
+
+    User.findById(req.user.id, (err, foundUser)=>{
+        if(err){
+            console.log(err);
+        } else {
+            if(foundUser){
+                foundUser.companyName = companyName;
+                foundUser.bio = bio;
+                foundUser.phoneNumber = phoneNumber;
+                foundUser.businessEmail = businessEmail;
+                
+                foundUser.save(()=>{
+                    res.redirect("/settings");
+                });
+            }
+        }
+    });
+});
+
 //Establishing connection to the server
 app.listen(process.env.PORT || port, ()=>{
     console.log("Server running on port: " + port);
 });
-
