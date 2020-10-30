@@ -142,13 +142,31 @@ footer{
 }
 
 /* ************ */
-/* User Profile */
+/*   Profile    */
 /* ************ */
+.profile{
+}
+
+.profile .row{
+    box-shadow: 0px 3px 4px lightblue;
+}
+
+.profile .col-lg-12{
+    box-shadow: 0px 2px 5px lightblue; 
+}
+
+.profile .col-lg-4{
+    box-shadow: 0px 2px 5px lightblue; 
+}
+
+.profile .col-lg-8{
+    box-shadow: 0px 2px 5px lightblue; 
+}
+
 .profile-header{
     width: 100%;
     min-height: 200px;
     position: relative;
-    box-shadow: 0px 3px 4px lightblue;
 }
 
 .profile-img{
@@ -168,9 +186,16 @@ footer{
 }
 
 .profile-header-info{
-    padding-top:10%;
+    padding: 10% 2% 0% 2%;
+    margin: 0% 1% 1% 1%;
     justify-content: center;
     float: left;
+}
+
+.profile-header a:hover{
+    border: none;
+    background-color: #fabc3d;
+    box-shadow: 0px 2px 5px #fabc3d;
 }
 
 .profile-option{
@@ -183,47 +208,42 @@ footer{
     border-radius: 10%;
 }
 
-.profile-option button:hover{
-    border: none;
-    background-color: #fabc3d;
-    box-shadow: 0px 2px 5px #fabc3d;
+/* Profile Body */
+.profile-body h5{
+    padding: 2%;
+    margin: 1%;
+    text-align: center;
+    border-radius: 1rem;
+    color: white;
+    background-color: lightblue;
 }
 
-/* Profile Body */
+.profile-body p{
+    padding: 2%;
+    margin: 1%;
+}
+
 .profile-body-info{
-    padding-top: 50px;
+    padding-top: 40px;
     box-shadow: 0px 2px 5px lightblue;
 }
 
-.profile-body-info div{
-    padding:  2% 0 0;
-}
 
 .profile-rating{
+    padding: 2%;
+    margin: 1%;
     display: flex;
 }
 
-.profile-dashboard{
-    box-shadow: 0px 2px 5px lightblue;
+.profile table{
+    table-layout:fixed;
+    width:100%;
+    border-radius: 1rem;
 }
 
-.tab button{
-    padding: 1%;
-    margin: .2% 0% 0%;
-    text-align: center;
-    border: none;
-    box-shadow: 0px 2px 5px lightblue;
-}
-
-.tab button:hover{
-    background-color: #fabc3d;
-    box-shadow: 0px 2px 5px #fabc3d;
-}
-
-.tab-content{
-   display: block;
-   display: none;
-   padding: 1%;
+.profile tbody{
+    color: #8f8f8f;
+    background-color: white;
 }
 
 .widget-author {
