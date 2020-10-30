@@ -140,6 +140,9 @@ footer{
 /* ************ */
 /*   Profile    */
 /* ************ */
+/* ************ */
+/*   Profile    */
+/* ************ */
 .profile{
 }
 
@@ -417,7 +420,6 @@ a.list-group-item, .list-group-item-action {
     content: '';
 }
 
-
 /* ************ */
 /* Login/Signup */
 /* ************ */
@@ -536,11 +538,25 @@ a.list-group-item, .list-group-item-action {
 /***********************/
 /*****SETTINGS**********/
 /***********************/
-/*
-.settings .form-group{
-    display: flex;
+
+.tab button{
+    padding: 1%;
+    margin: .2% 0% 0%;
+    text-align: center;
+    border: none;
+    box-shadow: 0px 2px 5px lightblue;
 }
-*/
+ 
+.tab button:hover{
+    background-color: #fabc3d;
+    box-shadow: 0px 2px 5px #fabc3d;
+}
+ 
+.tab-content{
+   display: block;
+   display: none;
+   padding: 1%;
+}
 
 .settings .form-group div{
     padding: 1%;
