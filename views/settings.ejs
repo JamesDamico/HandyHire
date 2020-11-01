@@ -15,7 +15,7 @@
                   -->
             </div>
             <div id = "profileSettings"class = "row tab-content center">
-               <form id = "profileForm">
+               <form id = "profileForm" action="/settings" method="POST">
                   <div class="row">
                      <div class="col-lg-6">
                         <div class= "form-group">
@@ -25,11 +25,11 @@
                         </div>
                         <div class= "form-group">
                            <label for="enter_city"><i class="fas fa-city"></i>City</label>
-                           <input type="text" class="form-control" id="enter_city" placeholder="City">
+                           <input type="text" class="form-control" id="enter_city" placeholder="City" name="city" value="<%= user.city %>">
                         </div>
                         <div class= "form-group">
                            <label for="enter_state"><i class="fas fa-city"></i>State</label>
-                           <select class="browser-default custom-select">
+                           <select class="browser-default custom-select" value="Test" name="state">
                               <option hidden>State</option>
                               <option value="AL">Alabama</option>
                               <option value="AK">Alaska</option>
@@ -92,16 +92,20 @@
                         </div> -->
                      <div class="col-lg-6">
                         <div class= "form-group">
-                           <label for="work_email"><i class="far fa-envelope"></i>Work Email</label>
-                           <input class="form-control" type="text" id="work_email" placeholder="Email"> 
+                           <label for="companyName"><i class="far fa-envelope"></i>Company Name</label>
+                           <input class="form-control" type="text" id="companyName" placeholder="Company Name" name="companyName" value="<%= user.companyName %>"> 
+                        </div>
+                        <div class= "form-group">
+                           <label for="work_email"><i class="far fa-envelope"></i>Business Email</label>
+                           <input class="form-control" type="text" id="work_email" placeholder="Email" name="businessEmail" value="<%= user.businessEmail %>"> 
                         </div>
                         <div class= "form-group">
                            <label for="change_phoneNum"><i class="fas fa-phone-alt"></i>Phone Number</label>
-                           <input class="form-control" id="change_phoneNum" type="text" placeholder=" Phone Number">
+                           <input class="form-control" id="change_phoneNum" type="text" placeholder=" Phone Number" name="phoneNumber" value="<%= user.phoneNumber %>">
                         </div>
                         <div class= "form-group">
                            <label for="type_of_work"><i class="fas fa-briefcase"></i>Type of Work</label>
-                           <input class="form-control" type="text" id="type_of_work" placeholder=" Type of Work">
+                           <input class="form-control" type="text" id="type_of_work" placeholder=" Type of Work" name="typeOfWork" value="<%= user.typeOfWork %>">
                         </div>
                      </div>
                   </div>
@@ -109,8 +113,7 @@
                      <div class="col-lg-12">
                         <div class= "form-group">
                            <label for="update_bio"><i class="fas fa-atlas"></i>Bio</label>
-                           <textarea class="form-control" id="update_bio" type="text" rows="3" placeholder=" Bio">
-                           </textarea>
+                           <textarea class="form-control" id="update_bio" type="text" rows="3" name="bio"><%= user.bio %></textarea>
                         </div>
                      </div>
                   </div>
@@ -118,19 +121,19 @@
                      <div class="col-lg-4">
                         <div class= "form-group">
                            <label for="update_languages"><i class="fas fa-check-square"></i>Languages</label>
-                           <input class="form-control" type="text" id="update_languages" placeholder=" Language(s)">
+                           <input class="form-control" type="text" id="update_languages" placeholder=" Language(s)" name="languages" value="<%= user.languages %>">
                         </div>
                      </div>
                      <div class="col-lg-4">
                         <div class= "form-group">
                            <label for="update_skill"><i class="fas fa-check-square"></i>Skill</label>
-                           <input class="form-control" type="text" id="update_skill" placeholder=" Skill(s)">
+                           <input class="form-control" type="text" id="update_skill" placeholder=" Skill(s)" name="skills" value="<%= user.skills %>">
                         </div>
                      </div>
                      <div class="col-lg-4">
                         <div class= "form-group">
                            <label for="update_certifications"><i class="fas fa-certificate"></i>Certifications</label>
-                           <input class="form-control" type="text" id="update_certifications" placeholder=" Certification(s)">
+                           <input class="form-control" type="text" id="update_certifications" placeholder=" Certification(s)" name="certifications" value="<%= user.certifications %>">
                         </div>
                      </div>
                   </div>
@@ -138,7 +141,7 @@
                      <div><i class="far fa-credit-card"></i></div>
                      <input class="form-control" type="paymentMethod" placeholder="Payment Method">
                      </div> -->
-                  <button class= "btn btn-info">Submit</button>
+                  <button class= "btn btn-info">Save Changes</button>
                </form>
             </div>
             <div id = "accountSettings" class = "row tab-content">
@@ -158,7 +161,7 @@
                         </div>
                      </div>
                   </div>
-                  <button class= "btn btn-info">Submit</button>
+                  <button class= "btn btn-info">Save Changes</button>
                </form>
             </div>
             <!--

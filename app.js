@@ -52,7 +52,13 @@ const userSchema = new mongoose.Schema({
     companyName: String,
     bio: String,
     phoneNumber: String,
-    businessEmail: String
+    businessEmail: String,
+    city: String,
+    state: String,
+    typeOfWork: String,
+    languages: String, //Make an array
+    certifications: String, //Make an array
+    skills: String //Make an array
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -142,13 +148,17 @@ app.post("/signup", (req, res)=>{
 
 //Settings Post Route
 app.post("/settings", (req, res)=>{
-    // companyName: String,
-    // bio: String,
-    // phoneNumber: String
+
     const companyName = req.body.companyName;
     const bio = req.body.bio;
     const phoneNumber = req.body.phoneNumber;
     const businessEmail = req.body.businessEmail;
+    const typeOfWork = req.body.typeOfWork;
+    const languages = req.body.languages;
+    const skills = req.body.skills;
+    const certifications = req.body.certifications;
+    const city = req.body.city;
+    const state = req.body.state;
 
     User.findById(req.user.id, (err, foundUser)=>{
         if(err){
@@ -159,7 +169,13 @@ app.post("/settings", (req, res)=>{
                 foundUser.bio = bio;
                 foundUser.phoneNumber = phoneNumber;
                 foundUser.businessEmail = businessEmail;
-                
+                foundUser.typeOfWork = typeOfWork;
+                foundUser.languages = languages;
+                foundUser.skills = skills;
+                foundUser.certifications = certifications;
+                foundUser.city = city;
+                foundUser.state = state;
+            
                 foundUser.save(()=>{
                     res.redirect("/settings");
                 });
