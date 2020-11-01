@@ -140,6 +140,9 @@ footer{
 /* ************ */
 /*   Profile    */
 /* ************ */
+.profile p{
+    color: black;
+}
 
 .profile .row{
     box-shadow: 0px 3px 4px lightblue;
@@ -385,7 +388,7 @@ footer{
     color: #11074e;
 }
 
-#accountSettings{
+#profileSettings{
     display: block;
     padding: 1%;
 }

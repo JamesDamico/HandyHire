@@ -84,6 +84,10 @@
                               <option value="WY">Wyoming</option>
                            </select>
                         </div>
+                        <div class= "form-group">
+                           <label for="update_bio"><i class="fas fa-atlas"></i>Bio</label>
+                           <textarea class="form-control" id="update_bio" type="text" rows="3" name="bio" placeholder = "Bio"><%= user.bio %></textarea>
+                        </div>
                      </div>
                      <!-- <div class= "form-group">
                         <div><i class="center fas fa-envelope-square"></i></div>
@@ -106,14 +110,6 @@
                         <div class= "form-group">
                            <label for="type_of_work"><i class="fas fa-briefcase"></i>Type of Work</label>
                            <input class="form-control" type="text" id="type_of_work" placeholder=" Type of Work" name="typeOfWork" value="<%= user.typeOfWork %>">
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class= "form-group">
-                           <label for="update_bio"><i class="fas fa-atlas"></i>Bio</label>
-                           <textarea class="form-control" id="update_bio" type="text" rows="3" name="bio"><%= user.bio %></textarea>
                         </div>
                      </div>
                   </div>
