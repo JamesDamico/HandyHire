@@ -55,15 +55,16 @@
               <a href="#" class="nav-link dropdown-toggle" id="accountNavItem" data-toggle="dropdown">Account</a>
               <div class="dropdown-menu ">
                 <%if(user){%>
-                 <a class= "signup dropdown-item loggedIn" id="accountEmail" href="/settings"><i class="fas fa-user-edit"></i> Edit Account</a>
-                 <div class="dropdown-divider loggedIn"></div>
-                 <a class= "signup dropdown-item loggedIn" id="logout" href="/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                 <a class= "signup dropdown-item" id="accountEmail" href="/settings"><i class="fas fa-user-edit"></i> Edit Account</a>
+                 <div class="dropdown-divider"></div>
+                 <a class= "signup dropdown-item" id="logout" href="/users/<%=user.username%> "><i class="far fa-eye"></i> View Profile Page</a>
+                 <div class="dropdown-divider"></div>
+                 <a class= "signup dropdown-item" id="logout" href="/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                 <%} else {%> 
-                  <a class= "login dropdown-item loggedOut" href="/login"><i class="fas fa-user"></i> Log In</a>
-                  <div class="dropdown-divider loggedOut"></div>
-                  <a class= "signup dropdown-item loggedOut" href="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+                  <a class= "login dropdown-item" href="/login"><i class="fas fa-user"></i> Log In</a>
+                  <div class="dropdown-divider"></div>
+                  <a class= "signup dropdown-item" href="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
                 <%}%>
-                 <div class="dropdown-divider loggedOut"></div>
               </div>
            </li>
           </ul>
