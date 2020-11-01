@@ -249,6 +249,11 @@ footer{
     color: red;
 }
 
+#createAnAccount{
+    text-align: center;
+    color: blue;
+}
+
 #logreg-forms{
     width:412px;
     margin:10vh auto;
@@ -393,5 +398,11 @@ footer{
     padding: 1%;
 }
 
-
+/******************************/
+/*******Browse Handymen********/
+/******************************/
+#comingSoon {
+    color: #fabc3d;
+    text-align: center;
+}
 

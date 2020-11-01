@@ -121,9 +121,15 @@ app.get("/browse", (req, res)=>{
     res.render("browse.ejs");
 });
 
+//Logout Route
 app.get("/logout", (req, res)=>{
     req.logout();
     res.redirect("/");
+});
+
+//Browse Handymen
+app.get("/browse", (req, res)=>{
+    res.render("browse.ejs")
 });
 
 //Login Post Route
