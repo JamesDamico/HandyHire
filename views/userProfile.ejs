@@ -8,11 +8,11 @@
       <div class = "row">
          <div class = " col-lg-12 profile-header">
             <div class = "profile-img">
-               <img id = "handyManImage" src = "../Images/handyman.png"  alt="yourImage">
+            <img id = "handyManImage" src ="<%=foundUser.image.url%>"  alt="yourImage">
             </div>
             <div class = "profile-header-info">
                <h3 id = "handyManName"><%=foundUser.companyName%><i id = "handyManVerification" class="fas fa-check-double fa-xs"></i></h3>
-               <p id = "handyManType"><i class="fas fa-briefcase"></i><%=foundUser.typeOfWork%></p>
+               <p id = "handyManType"><i class="fas fa-briefcase"></i> <%=foundUser.typeOfWork%></p>
             </div>
             <div class = "profile-option">
                <a class = "btn btn-info btn-round" href="/"><i class="fas fa-chevron-circle-left"></i> Back</a>
@@ -24,9 +24,9 @@
       <!--About Handyman Row-->
       <div class = "row profile-body">
          <div class="col-lg-4 profile-body-info">
-            <p id = "handyManAddress"><i class="fas fa-city"></i><span id = "handyManCity"><%=foundUser.city%></span>, <span id = "handyManState"><%=foundUser.state%></span></p>
-            <p id = "handyManPhone"><i class = "fa fa-phone"></i><%=foundUser.phoneNumber%></p>
-            <p id = "handyManEmail"><i class = "fa fa-envelope"></i><%=foundUser.businessEmail%></p>
+            <p id = "handyManAddress"><i class="fas fa-city"></i><span id = "handyManCity"> <%=foundUser.city%></span>, <span id = "handyManState"><%=foundUser.state%></span></p>
+            <p id = "handyManPhone"><i class = "fa fa-phone"></i> <%=foundUser.phoneNumber%></p>
+            <p id = "handyManEmail"><i class = "fa fa-envelope"></i> <%=foundUser.businessEmail%></p>
             <!--
             <div class = "profile-rating">
               <div><h3 id = "handyManRating">4.8</h3></div>

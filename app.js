@@ -21,6 +21,27 @@ app.use(flash());
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
 
+//Multure & Cloudinary
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET
+});
+
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: "HandyHire",
+        allowedFormats: ["jpeg", "png", "jpg"]
+    }
+});
+
+const upload = multer({storage});
+
+
 //Mongoose
 const mongoose = require("mongoose");
 const session = require("express-session");
@@ -48,6 +69,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
+    },
+    image: {
+        url: String,
+        filename: String
     },
     companyName: String,
     bio: String,
@@ -153,7 +178,7 @@ app.post("/signup", (req, res)=>{
 });
 
 //Settings Post Route
-app.post("/settings", (req, res)=>{
+app.post("/settings", upload.single("image"), (req, res)=>{
 
     const companyName = req.body.companyName;
     const bio = req.body.bio;
@@ -181,7 +206,17 @@ app.post("/settings", (req, res)=>{
                 foundUser.certifications = certifications;
                 foundUser.city = city;
                 foundUser.state = state;
-            
+
+                if(req.file){
+                    if(foundUser.image.filename != null){
+                        const file = foundUser.image.filename;
+                        file.replace("HandyHire/", "");
+                        cloudinary.uploader.destroy(file);
+                    }
+                    foundUser.image.url = req.file.path;
+                    foundUser.image.filename = req.file.filename;
+                }
+
                 foundUser.save(()=>{
                     res.redirect("/settings");
                 });

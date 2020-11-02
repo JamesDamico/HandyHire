@@ -15,13 +15,13 @@
                   -->
             </div>
             <div id = "profileSettings"class = "row tab-content center">
-               <form id = "profileForm" action="/settings" method="POST">
+               <form id = "profileForm" action="/settings" method="POST" enctype="multipart/form-data">
                   <div class="row">
                      <div class="col-lg-6">
                         <div class= "form-group">
                            <label for="filename"><i class="fas fa-portrait"></i>Profile Picture</label><br>
                            <!--Code for Inputing code for file explorer -->
-                           <input type="file" id="filename" name="filename">
+                           <input type="file" id="image" name="image" value="<%= user.image.filename %> ">
                         </div>
                         <div class= "form-group">
                            <label for="enter_city"><i class="fas fa-city"></i>City</label>
@@ -30,7 +30,7 @@
                         <div class= "form-group">
                            <label for="enter_state"><i class="fas fa-city"></i>State</label>
                            <select class="browser-default custom-select" name="state">
-                              <option hidden>State</option>
+                              <option hidden><%= user.state %></option>
                               <option value="AL">Alabama</option>
                               <option value="AK">Alaska</option>
                               <option value="AZ">Arizona</option>
