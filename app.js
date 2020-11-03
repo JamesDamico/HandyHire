@@ -141,6 +141,10 @@ app.get("/users/:username", (req, res)=>{
     });
 });
 
+app.get("/error", (req, res)=>{
+    res.render("error.ejs");
+});
+
 //Browse Route
 app.get("/browse", (req, res)=>{
     res.render("browse.ejs");
