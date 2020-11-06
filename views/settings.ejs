@@ -113,33 +113,80 @@
                         </div>
                      </div>
                   </div>
-                  <div class="row">
-                     <div class="col-lg-4">
-                        <div class= "form-group">
-                           <label for="update_languages"><i class="fas fa-check-square"></i>Languages</label>
-                           <input class="form-control" type="text" id="update_languages" placeholder=" Language(s)" name="languages" value="<%= user.languages %>">
-                        </div>
-                     </div>
-                     <div class="col-lg-4">
-                        <div class= "form-group">
-                           <label for="update_skill"><i class="fas fa-check-square"></i>Skill</label>
-                           <input class="form-control" type="text" id="update_skill" placeholder=" Skill(s)" name="skills" value="<%= user.skills %>">
-                        </div>
-                     </div>
-                     <div class="col-lg-4">
-                        <div class= "form-group">
-                           <label for="update_certifications"><i class="fas fa-certificate"></i>Certifications</label>
-                           <input class="form-control" type="text" id="update_certifications" placeholder=" Certification(s)" name="certifications" value="<%= user.certifications %>">
-                        </div>
-                     </div>
-                  </div>
-                  <!--  <div class= "form-group">
-                     <div><i class="far fa-credit-card"></i></div>
-                     <input class="form-control" type="paymentMethod" placeholder="Payment Method">
-                     </div> -->
                   <button class= "btn btn-info">Save Changes</button>
                </form>
+
+               <div class="row">
+                  <!-- Certifications -->
+                  <div class="col-lg-4">
+                     <div class= "form-group">
+                        <label for="update_certifications"><i class="fas fa-check-square"></i>Certifications</label>
+                     </div>
+
+                     <% user.certifications.forEach(function(certification){ %>
+
+                        <form action="/deleteCertification" method="post">
+                            <div class="item">
+                                <input type="checkbox" name="checkbox" value="<%= certification %>" onChange="this.form.submit()">
+                                <span><%= certification %></span>
+                            </div>
+                        </form>
+            
+                    <% }); %>
+
+                    <form class="item" action="/lists" method="post">
+                     <input type="text" name="newItem" placeholder="New Certification" autocomplete="off">
+                     <button type="submit" name="list" value="certifications">+</button>
+                    </form>
+                  </div>
+
+                  <!-- Skills -->
+                  <div class="col-lg-4">
+                     <div class= "form-group">
+                        <label for="update_skills"><i class="fas fa-check-square"></i>Skills</label>
+                     </div>
+
+                     <% user.skills.forEach(function(skill){ %>
+
+                        <form action="/deleteSkill" method="post">
+                            <div class="item">
+                                <input type="checkbox" name="checkbox" value="<%= skill %>" onChange="this.form.submit()">
+                                <span><%= skill %></span>
+                            </div>
+                        </form>
+            
+                    <% }); %>
+
+                    <form class="item" action="/lists" method="post">
+                     <input type="text" name="newItem" placeholder="New Skill" autocomplete="off">
+                     <button type="submit" name="list" value="skills">+</button>
+                    </form>
+                 </div>
+                  
+                 <!-- Languages -->
+                  <div class="col-lg-4">
+                     <div class= "form-group">
+                        <label for="update_languages"><i class="fas fa-check-square"></i>Languages</label>
+                     </div>
+
+                     <% user.languages.forEach(function(language){ %>
+
+                        <form action="/deleteLanguage" method="post">
+                            <div class="item">
+                                <input type="checkbox" name="checkbox" value="<%= language %>" onChange="this.form.submit()">
+                                <span><%= language %></span>
+                            </div>
+                        </form>
+            
+                    <% }); %>
+
+                    <form class="item" action="/lists" method="post">
+                     <input type="text" name="newItem" placeholder="New Language" autocomplete="off">
+                     <button type="submit" name="list" value="languages">+</button>
+                    </form>
+                  </div>
             </div>
+            
             <div id = "accountSettings" class = "row tab-content">
                <!-- Active-Tab -->
                <form id = "accountForm">

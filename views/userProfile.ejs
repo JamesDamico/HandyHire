@@ -8,7 +8,11 @@
       <div class = "row">
          <div class = " col-lg-12 profile-header">
             <div class = "profile-img">
-            <img id = "handyManImage" src ="<%=foundUser.image.url%>"  alt="yourImage">
+            <%if(foundUser.image.url) { %>
+               <img id = "handyManImage" src ="<%=foundUser.image.url%>">
+            <%} else {%>
+               <img id = "handyManImage" src ="../Images/handyman.png">
+            <%}%>
             </div>
             <div class = "profile-header-info">
                <h3 id = "handyManName"><%=foundUser.companyName%><i id = "handyManVerification" class="fas fa-check-double fa-xs"></i></h3>
@@ -53,25 +57,25 @@
          <div class = "col-lg-4">
             <h5><i class="fas fa-certificate"></i> Certifications</h5>
             <ul class="list-group list-group-flush">
-               <li id = "handyManCert" class="list-group-item"><%=foundUser.certifications%></li>
-               <!-- <li class="list-group-item">Certification 2</li>
-               <li class="list-group-item">Certification 3</li> -->
+               <% foundUser.certifications.forEach(certification => { %>
+                  <li id = "handyManCert" class="list-group-item"><%=certification%></li>
+               <%});%>
             </ul>
          </div>
          <div class = "col-lg-4">
             <h5><i class="fas fa-hammer"></i> Skills</h5>
             <ul class="list-group list-group-flush">
-               <li id = "handyManSkill" class="list-group-item"><%=foundUser.skills%></li>
-               <!-- <li class="list-group-item">Skill 2</li>
-               <li class="list-group-item">Skill 3</li> -->
+               <% foundUser.skills.forEach(skill => { %>
+                  <li id = "handyManSkill" class="list-group-item"><%=skill%></li>
+               <%});%>
             </ul>
          </div>
          <div class = "col-lg-4">
             <h5><i class="fas fa-globe"></i> Languages</h5>
             <ul class="list-group list-group-flush">
-               <li id = "handyManLang" class="list-group-item"><%=foundUser.languages%></li>
-               <!-- <li class="list-group-item">Language 2</li>
-               <li class="list-group-item">Language 3</li> -->
+               <% foundUser.languages.forEach(language => { %>
+                  <li id = "handyManLang" class="list-group-item"><%=language%></li>
+               <%});%>
             </ul>
          </div>
       </div>

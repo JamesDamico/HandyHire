@@ -81,9 +81,9 @@ const userSchema = new mongoose.Schema({
     city: String,
     state: String,
     typeOfWork: String,
-    languages: String, //Make an array
-    certifications: String, //Make an array
-    skills: String //Make an array
+    languages: [], //Make an array
+    certifications: [], //Make an array
+    skills: [] //Make an array
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -189,9 +189,6 @@ app.post("/settings", upload.single("image"), (req, res)=>{
     const phoneNumber = req.body.phoneNumber;
     const businessEmail = req.body.businessEmail;
     const typeOfWork = req.body.typeOfWork;
-    const languages = req.body.languages;
-    const skills = req.body.skills;
-    const certifications = req.body.certifications;
     const city = req.body.city;
     const state = req.body.state;
 
@@ -205,9 +202,6 @@ app.post("/settings", upload.single("image"), (req, res)=>{
                 foundUser.phoneNumber = phoneNumber;
                 foundUser.businessEmail = businessEmail;
                 foundUser.typeOfWork = typeOfWork;
-                foundUser.languages = languages;
-                foundUser.skills = skills;
-                foundUser.certifications = certifications;
                 foundUser.city = city;
                 foundUser.state = state;
 
@@ -226,6 +220,58 @@ app.post("/settings", upload.single("image"), (req, res)=>{
                 });
             }
         }
+    });
+});
+
+app.post("/lists", (req, res)=>{
+    const item = req.body.newItem;
+    const listName = req.body.list;
+
+    if(listName === "languages"){
+        req.user.languages.push(item);
+        req.user.save(()=>{
+            res.redirect("/settings");
+        });
+    } else if(listName === "skills"){
+        req.user.skills.push(item);
+        req.user.save(()=>{
+            res.redirect("/settings");
+        });
+    } else if(listName === "certifications"){
+        req.user.certifications.push(item);
+        req.user.save(()=>{
+            res.redirect("/settings");
+        });
+    }
+});
+
+app.post("/deleteLanguage", (req, res)=>{
+    const language = req.body.checkbox;
+
+    const index = req.user.languages.indexOf(language);
+    req.user.languages.splice(index, 1);
+    req.user.save(()=>{
+        res.redirect("/settings");
+    });
+});
+
+app.post("/deleteCertification", (req, res)=>{
+    const certification = req.body.checkbox;
+
+    const index = req.user.certifications.indexOf(certification);
+    req.user.certifications.splice(index, 1);
+    req.user.save(()=>{
+        res.redirect("/settings");
+    });
+});
+
+app.post("/deleteSkill", (req, res)=>{
+    const skill = req.body.checkbox;
+
+    const index = req.user.skills.indexOf(skill);
+    req.user.skills.splice(index, 1);
+    req.user.save(()=>{
+        res.redirect("/settings");
     });
 });
 
