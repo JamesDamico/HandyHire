@@ -8,8 +8,8 @@
       <div class = "row">
          <div class = " col-lg-12 profile-header">
             <div class = "profile-img">
-            <%if(foundUser.image.url) { %>
-               <img id = "handyManImage" src ="<%=foundUser.image.url%>">
+            <%if(foundUser.profilePicture.url) { %>
+               <img id = "handyManImage" src ="<%=foundUser.profilePicture.url%>">
             <%} else {%>
                <img id = "handyManImage" src ="../Images/handyman.png">
             <%}%>
@@ -79,8 +79,10 @@
             </ul>
          </div>
       </div>
+      
       <!--Completed Jobs Row-->
-      <div class = "row profile-body">
+      <%foundUser.completedJobs.forEach(element => { %>
+         <div class = "row profile-body">
          <div class = "col-lg-12">
             <h5><i class="fas fa-clipboard-check"></i> Completed Jobs</h5>
             <!-- Table -->
@@ -94,14 +96,15 @@
                </thead>
                <tbody>
                   <tr>
-                     <td id = "handyManJobTitle">Cabinet</td>
-                     <td id = "handyManJobDesc">Refacing</td>
-                     <td id = "handyManJobImg"><img src="../Images/handyman.png" alt="" border=3 height=100 width=100></img></td>
+                     <td id = "handyManJobTitle"><%=element.title%></td>
+                     <td id = "handyManJobDesc"><%=element.desc%></td>
+                     <td id = "handyManJobImg"><img src="<%=element.image.url%>" alt="" border=3 height=100 width=100></img></td>
                   </tr>
                </tbody>
             </table>
          </div>
       </div>
+      <%});%>
       <!--Ends Profile Body Rows-->
    </div>
    <!--Ends Profile Container-->

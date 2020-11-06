@@ -70,7 +70,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    image: {
+    profilePicture: {
         url: String,
         filename: String
     },
@@ -83,7 +83,8 @@ const userSchema = new mongoose.Schema({
     typeOfWork: String,
     languages: [], //Make an array
     certifications: [], //Make an array
-    skills: [] //Make an array
+    skills: [], //Make an array
+    completedJobs: []
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -206,13 +207,13 @@ app.post("/settings", upload.single("image"), (req, res)=>{
                 foundUser.state = state;
 
                 if(req.file){
-                    if(foundUser.image.filename != null){
-                        const file = foundUser.image.filename;
+                    if(foundUser.profilePicture.filename != null){
+                        const file = foundUser.profilePicture.filename;
                         file.replace("HandyHire/", "");
                         cloudinary.uploader.destroy(file);
                     }
-                    foundUser.image.url = req.file.path;
-                    foundUser.image.filename = req.file.filename;
+                    foundUser.profilePicture.url = req.file.path;
+                    foundUser.profilePicture.filename = req.file.filename;
                 }
 
                 foundUser.save(()=>{
@@ -270,6 +271,54 @@ app.post("/deleteSkill", (req, res)=>{
 
     const index = req.user.skills.indexOf(skill);
     req.user.skills.splice(index, 1);
+    req.user.save(()=>{
+        res.redirect("/settings");
+    });
+});
+
+app.post("/addCompletedJob", upload.single("jobImage"), (req, res)=>{
+    let incomingFileName = null;
+    let incomingURL = null;
+
+    if(req.file){
+        incomingFileName = req.file.filename;
+        incomingURL = req.file.path;
+    }
+
+    const job = {
+        title: req.body.title,
+        desc: req.body.description,
+        image: {
+            filename: incomingFileName,
+            url: incomingURL
+        }
+    }
+
+    req.user.completedJobs.push(job);
+
+    req.user.save(()=>{
+        res.redirect("/settings");
+    });
+    
+});
+
+app.post("/deleteCompletedJob", (req, res)=>{
+
+    const title = req.body.title;
+
+    const index = req.user.completedJobs.findIndex(x => x.title === title);
+    
+    console.log(title);
+    console.log(index);
+
+    if(req.user.completedJobs[index].image.filename != null){
+        const file = req.user.completedJobs[index].image.filename;
+        file.replace("HandyHire/", "");
+        cloudinary.uploader.destroy(file);
+    }
+    
+    req.user.completedJobs.splice(index, 1);
+
     req.user.save(()=>{
         res.redirect("/settings");
     });

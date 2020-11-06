@@ -21,7 +21,7 @@
                         <div class= "form-group">
                            <label for="filename"><i class="fas fa-portrait"></i>Profile Picture</label><br>
                            <!--Code for Inputing code for file explorer -->
-                           <input type="file" id="image" name="image" value="<%= user.image.filename %> ">
+                           <input type="file" id="image" name="image" value="<%= user.profilePicture.filename %> ">
                         </div>
                         <div class= "form-group">
                            <label for="enter_city"><i class="fas fa-city"></i>City</label>
@@ -89,11 +89,6 @@
                            <textarea class="form-control" id="update_bio" type="text" rows="3" name="bio" placeholder = "Bio"><%= user.bio %></textarea>
                         </div>
                      </div>
-                     <!-- <div class= "form-group">
-                        <div><i class="center fas fa-envelope-square"></i></div>
-                        <label>Update Email</label>
-                        <input class="form-control" type="email" placeholder="Update Email">
-                        </div> -->
                      <div class="col-lg-6">
                         <div class= "form-group">
                            <label for="companyName"><i class="far fa-envelope"></i>Company Name</label>
@@ -185,8 +180,93 @@
                      <button type="submit" name="list" value="languages">+</button>
                     </form>
                   </div>
-            </div>
+               </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               <!-- <div class="row"> -->
+
+                  <div class= "form-group">
+                     <label for="completedJobs"><i class="fas fa-check-square"></i>Completed Jobs</label>
+                  </div>
+
+                  <% user.completedJobs.forEach(function(job){ %>
+
+                     <form class="item" action="/deleteCompletedJob" method="POST">
+                        <div class="form-group">
+                           <label for="completedJobTitle"></i>Title</label>
+                           <input class="form-control" type="text" id="completedJobTitle" name="title" value="<%= job.title %>" placeholder="Title" autocomplete="off" readonly>
+                        </div>
+   
+                        <div class="form-group">
+                           <label for="completedJobDescription"></i>Description</label>
+                           <textarea class="form-control" id="completedJobDescription" type="text" rows="3" name="description" placeholder = "Description" value="<%= job.image._id %>"  readonly><%= job.desc %></textarea>
+                        </div>
+   
+                        <div class="form-group">
+                           <label for="jobImage"></i>Profile Picture</label><br>
+                           <input class="form-control" type="text" id="completedJobTitle" name="jobImage" value="<%= job.image.filename %>" placeholder="No-Image" autocomplete="off" readonly>
+                        </div>
+   
+                        <button type="submit" value="languages">Delete Job</button>
+                     </form>
+         
+                 <% }); %>
+
+
+
+                  <form class="item" action="/addCompletedJob" method="POST" enctype="multipart/form-data">
+                     <div class="form-group">
+                        <label for="completedJobTitle"></i>Title</label>
+                        <input class="form-control" type="text" id="completedJobTitle" name="title" placeholder="Title" autocomplete="off">
+                     </div>
+
+                     <div class="form-group">
+                        <label for="completedJobDescription"></i>Description</label>
+                        <textarea class="form-control" id="completedJobDescription" type="text" rows="3" name="description" placeholder = "Description"></textarea>
+                     </div>
+
+                     <div class="form-group">
+                        <label for="jobImage"></i>Profile Picture</label><br>
+                        <input class="form-control" type="file" id="jobImage" name="jobImage">
+                     </div>
+
+                     <button type="submit" name="list" value="languages">Add Job</button>
+                  </form>
+               <!-- </div> -->
             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div id = "accountSettings" class = "row tab-content">
                <!-- Active-Tab -->
                <form id = "accountForm">
