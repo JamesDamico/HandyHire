@@ -209,28 +209,30 @@
                      <label for="completedJobs"><i class="fas fa-check-square"></i> Completed Jobs</label>
                   </div>
 
-                  <% user.completedJobs.forEach(function(job){ %>
+                  <% for(let i = 0; i < user.completedJobs.length; i++){ %>
 
                      <form class="item" action="/deleteCompletedJob" method="POST">
                         <div class="form-group" >
+                           <input class="form-control" type="text" id="index" name="index" value="<%=i%>" placeholder="index" autocomplete="off" readonly hidden>
+
                            <label for="completedJobTitle">Title</label>
-                           <input class="form-control" type="text" id="completedJobTitle" name="title" value="<%= job.title %>" placeholder="Title" autocomplete="off" readonly>
+                           <input class="form-control" type="text" id="completedJobTitle" name="title" value="<%= user.completedJobs[i].title %>" placeholder="Title" autocomplete="off" readonly>
                         </div>
    
                         <div class="form-group">
                            <label for="completedJobDescription">Description</label>
-                           <textarea class="form-control" id="completedJobDescription" type="text" rows="3" name="description" placeholder = "Description" value="<%= job.image._id %>"  readonly><%= job.desc %></textarea>
+                           <textarea class="form-control" id="completedJobDescription" type="text" rows="3" name="description" placeholder = "Description"  readonly><%= user.completedJobs[i].desc %></textarea>
                         </div>
    
                         <div class="form-group">
                            <label for="jobImage">Profile Picture</label><br>
-                           <input class="form-control" type="text" id="completedJobTitle" name="jobImage" value="<%= job.image.filename %>" placeholder="No-Image" autocomplete="off" readonly>
+                           <input class="form-control" type="text" id="completedJobTitle" name="jobImage" value="<%= user.completedJobs[i].image.filename %>" placeholder="No-Image" autocomplete="off" readonly>
                         </div>
    
                         <button class= "btn btn-info" type="submit" value="languages">Delete Job</button>
                      </form>
          
-                 <% }); %>
+                 <% } %>
 
 
 

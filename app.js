@@ -304,12 +304,7 @@ app.post("/addCompletedJob", upload.single("jobImage"), (req, res)=>{
 
 app.post("/deleteCompletedJob", (req, res)=>{
 
-    const title = req.body.title;
-
-    const index = req.user.completedJobs.findIndex(x => x.title === title);
-    
-    console.log(title);
-    console.log(index);
+    const index = req.body.index;
 
     if(req.user.completedJobs[index].image.filename != null){
         const file = req.user.completedJobs[index].image.filename;
