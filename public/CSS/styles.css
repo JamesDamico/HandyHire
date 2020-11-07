@@ -405,4 +405,30 @@ footer{
     color: #fabc3d;
     text-align: center;
 }
+.browse p{
+    color: black;
+}
 
+.browse .btn{
+    margin: 0 0.5rem 0;
+}
+
+#filters{
+    margin-top: 1rem;
+}
+
+.browse .card{
+    margin-top: 1rem;
+    box-shadow: 0px 5px 10px lightblue;
+}
+
+.browse .card:hover{
+    transform: scale(1.01);
+    will-change: auto;
+    box-shadow: 0px 5px 10px #fabc3d;
+}
+
+.browse .card .btn:hover {
+    border: none;
+    background-color: #fabc3d;
+}

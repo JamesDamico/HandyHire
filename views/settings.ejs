@@ -1,10 +1,10 @@
 <%- include("../views/partials/header.ejs") -%>
 <section>
    <!--*********************-->
-   <!--* Profile Container *-->
+   <!--* Settings Container *-->
    <!--*********************-->
    <div class = "container-fluid">
-      <!--Profile Body-->
+      <!--Settings Body-->
       <div class = "row settings">
          <div class="col-lg-12">
             <div class = "row tab">
@@ -19,16 +19,16 @@
                   <div class="row">
                      <div class="col-lg-6">
                         <div class= "form-group">
-                           <label for="filename"><i class="fas fa-portrait"></i>Profile Picture</label><br>
+                           <label for="filename"><i class="fas fa-portrait"></i> Profile Picture</label><br>
                            <!--Code for Inputing code for file explorer -->
                            <input type="file" id="image" name="image" value="<%= user.profilePicture.filename %> ">
                         </div>
                         <div class= "form-group">
-                           <label for="enter_city"><i class="fas fa-city"></i>City</label>
+                           <label for="enter_city"><i class="fas fa-city"></i> City</label>
                            <input type="text" class="form-control" id="enter_city" placeholder="City" name="city" value="<%= user.city %>">
                         </div>
                         <div class= "form-group">
-                           <label for="enter_state"><i class="fas fa-city"></i>State</label>
+                           <label for="enter_state"><i class="fas fa-city"></i> State</label>
                            <select class="browser-default custom-select" name="state">
                               <option hidden><%= user.state %></option>
                               <option value="AL">Alabama</option>
@@ -85,25 +85,25 @@
                            </select>
                         </div>
                         <div class= "form-group">
-                           <label for="update_bio"><i class="fas fa-atlas"></i>Bio</label>
+                           <label for="update_bio"><i class="fas fa-atlas"></i> Bio</label>
                            <textarea class="form-control" id="update_bio" type="text" rows="3" name="bio" placeholder = "Bio"><%= user.bio %></textarea>
                         </div>
                      </div>
                      <div class="col-lg-6">
                         <div class= "form-group">
-                           <label for="companyName"><i class="far fa-envelope"></i>Company Name</label>
+                           <label for="companyName"><i class="far fa-envelope"></i> Company Name</label>
                            <input class="form-control" type="text" id="companyName" placeholder="Company Name" name="companyName" value="<%= user.companyName %>"> 
                         </div>
                         <div class= "form-group">
-                           <label for="work_email"><i class="far fa-envelope"></i>Business Email</label>
+                           <label for="work_email"><i class="far fa-envelope"></i> Business Email</label>
                            <input class="form-control" type="text" id="work_email" placeholder="Email" name="businessEmail" value="<%= user.businessEmail %>"> 
                         </div>
                         <div class= "form-group">
-                           <label for="change_phoneNum"><i class="fas fa-phone-alt"></i>Phone Number</label>
+                           <label for="change_phoneNum"><i class="fas fa-phone-alt"></i> Phone Number</label>
                            <input class="form-control" id="change_phoneNum" type="text" placeholder=" Phone Number" name="phoneNumber" value="<%= user.phoneNumber %>">
                         </div>
                         <div class= "form-group">
-                           <label for="type_of_work"><i class="fas fa-briefcase"></i>Type of Work</label>
+                           <label for="type_of_work"><i class="fas fa-briefcase"></i> Type of Work</label>
                            <input class="form-control" type="text" id="type_of_work" placeholder=" Type of Work" name="typeOfWork" value="<%= user.typeOfWork %>">
                         </div>
                      </div>
@@ -115,7 +115,7 @@
                   <!-- Certifications -->
                   <div class="col-lg-4">
                      <div class= "form-group">
-                        <label for="update_certifications"><i class="fas fa-check-square"></i>Certifications</label>
+                        <label for="update_certifications"><i class="fas fa-check-square"></i> Certifications</label>
                      </div>
 
                      <% user.certifications.forEach(function(certification){ %>
@@ -130,15 +130,17 @@
                     <% }); %>
 
                     <form class="item" action="/lists" method="post">
-                     <input type="text" name="newItem" placeholder="New Certification" autocomplete="off">
-                     <button type="submit" name="list" value="certifications">+</button>
+                     <div class="input-group md-form form-sm form-2 pl-0">
+                        <input class = "form-control" type="text" name="newItem" placeholder="New Certification" autocomplete="off">
+                        <button class="input-group-append btn btn-info" type="submit" name="list" value="certifications">+</button>
+                     </div>
                     </form>
                   </div>
 
                   <!-- Skills -->
                   <div class="col-lg-4">
                      <div class= "form-group">
-                        <label for="update_skills"><i class="fas fa-check-square"></i>Skills</label>
+                        <label for="update_skills"><i class="fas fa-check-square"></i> Skills</label>
                      </div>
 
                      <% user.skills.forEach(function(skill){ %>
@@ -153,15 +155,17 @@
                     <% }); %>
 
                     <form class="item" action="/lists" method="post">
-                     <input type="text" name="newItem" placeholder="New Skill" autocomplete="off">
-                     <button type="submit" name="list" value="skills">+</button>
+                     <div class="input-group md-form form-sm form-2 pl-0">
+                        <input class = "form-control" type="text" name="newItem" placeholder="New Skill" autocomplete="off">
+                        <button class="input-group-append btn btn-info" type="submit" name="list" value="skills">+</button>
+                     </div>
                     </form>
                  </div>
                   
                  <!-- Languages -->
                   <div class="col-lg-4">
                      <div class= "form-group">
-                        <label for="update_languages"><i class="fas fa-check-square"></i>Languages</label>
+                        <label for="update_languages"><i class="fas fa-check-square"></i> Languages</label>
                      </div>
 
                      <% user.languages.forEach(function(language){ %>
@@ -176,8 +180,10 @@
                     <% }); %>
 
                     <form class="item" action="/lists" method="post">
-                     <input type="text" name="newItem" placeholder="New Language" autocomplete="off">
-                     <button type="submit" name="list" value="languages">+</button>
+                     <div class="input-group md-form form-sm form-2 pl-0">
+                        <input class = "form-control" type="text" name="newItem" placeholder="New Language" autocomplete="off">
+                        <button class="input-group-append btn btn-info" type="submit" name="list" value="languages">+</button>
+                     </div>
                     </form>
                   </div>
                </div>
@@ -197,31 +203,31 @@
 
 
 
-               <!-- <div class="row"> -->
-
+               <div class="row" style = "margin-top: 1rem;">
+                  <div class = "col-lg-12">
                   <div class= "form-group">
-                     <label for="completedJobs"><i class="fas fa-check-square"></i>Completed Jobs</label>
+                     <label for="completedJobs"><i class="fas fa-check-square"></i> Completed Jobs</label>
                   </div>
 
                   <% user.completedJobs.forEach(function(job){ %>
 
                      <form class="item" action="/deleteCompletedJob" method="POST">
-                        <div class="form-group">
-                           <label for="completedJobTitle"></i>Title</label>
+                        <div class="form-group" >
+                           <label for="completedJobTitle">Title</label>
                            <input class="form-control" type="text" id="completedJobTitle" name="title" value="<%= job.title %>" placeholder="Title" autocomplete="off" readonly>
                         </div>
    
                         <div class="form-group">
-                           <label for="completedJobDescription"></i>Description</label>
+                           <label for="completedJobDescription">Description</label>
                            <textarea class="form-control" id="completedJobDescription" type="text" rows="3" name="description" placeholder = "Description" value="<%= job.image._id %>"  readonly><%= job.desc %></textarea>
                         </div>
    
                         <div class="form-group">
-                           <label for="jobImage"></i>Profile Picture</label><br>
+                           <label for="jobImage">Profile Picture</label><br>
                            <input class="form-control" type="text" id="completedJobTitle" name="jobImage" value="<%= job.image.filename %>" placeholder="No-Image" autocomplete="off" readonly>
                         </div>
    
-                        <button type="submit" value="languages">Delete Job</button>
+                        <button class= "btn btn-info" type="submit" value="languages">Delete Job</button>
                      </form>
          
                  <% }); %>
@@ -230,24 +236,25 @@
 
                   <form class="item" action="/addCompletedJob" method="POST" enctype="multipart/form-data">
                      <div class="form-group">
-                        <label for="completedJobTitle"></i>Title</label>
+                        <label for="completedJobTitle">Title</label>
                         <input class="form-control" type="text" id="completedJobTitle" name="title" placeholder="Title" autocomplete="off">
                      </div>
 
                      <div class="form-group">
-                        <label for="completedJobDescription"></i>Description</label>
+                        <label for="completedJobDescription">Description</label>
                         <textarea class="form-control" id="completedJobDescription" type="text" rows="3" name="description" placeholder = "Description"></textarea>
                      </div>
 
                      <div class="form-group">
-                        <label for="jobImage"></i>Profile Picture</label><br>
+                        <label for="jobImage">Profile Picture</label><br>
                         <input class="form-control" type="file" id="jobImage" name="jobImage">
                      </div>
 
-                     <button type="submit" name="list" value="languages">Add Job</button>
+                     <button class= "btn btn-info" type="submit" name="list" value="languages">Add Job</button>
                   </form>
-               <!-- </div> -->
-            
+                  </div>
+               </div>
+            </div>
 
 
 
@@ -273,13 +280,13 @@
                   <div class="row">
                      <div class="col-lg-6">
                         <div class= "form-group">
-                           <label for="update_email"><i class="far fa-envelope"></i>Email</label>
+                           <label for="update_email"><i class="far fa-envelope"></i> Email</label>
                            <input class="form-control" type="text" id="update_email" placeholder="Email"> 
                         </div>
                      </div>
                      <div class= "col-lg-6">
                         <div class= "form-group">
-                           <label for="update_password"><i class="fas fa-key"></i>Password</label>
+                           <label for="update_password"><i class="fas fa-key"></i> Password</label>
                            <input class="form-control" type="password" id="update_password" placeholder="Password">
                         </div>
                      </div>
@@ -294,14 +301,14 @@
                </div>
                -->
          </div>
-         <!--Ends Profile Dashboard Column-->
+         <!--Ends Settings Dashboard Column-->
       </div>
-      <!--Ends Profile Body-->
+      <!--Ends Settings Body-->
    </div>
-   <!--Ends Profile Container-->
+   <!--Ends Settings Container-->
 </section>
 <!--*********************-->
-<!--** Profile Script ***-->
+<!--** Settings Script ***-->
 <!--*********************-->
 <script>
    function switchTab(event, tabContentName){
