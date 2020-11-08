@@ -432,3 +432,34 @@ footer{
     border: none;
     background-color: #fabc3d;
 }
+
+/* ********* */
+/* Error 404 */
+/* ********* */
+.error404Page
+{
+	width: 100%;
+	text-align: center;
+}
+ 
+.error404Page .errorPageBody h1
+{
+	font-family: "Ubuntu";
+	padding: 20px 0 20px 0;
+}
+ 
+.error404Page .errorPageBody p
+{
+	color: black;
+	background-color: yellow;
+	font-family: "Segoe WP Black";
+	font-weight: bold;
+	font-size: 23px;
+	padding: 10px 0 10px 0;
+}
+ 
+.error404Page .errorPageBody button
+{
+	background-color: #fabc3d;
+	border-color: #fabc3d;
+}
