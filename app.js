@@ -78,8 +78,8 @@ const userSchema = new mongoose.Schema({
     bio: String,
     phoneNumber: String,
     businessEmail: String,
-    city: String,
     state: String,
+    county: String,
     typeOfWork: String,
     languages: [], //Make an array
     certifications: [], //Make an array
@@ -190,7 +190,7 @@ app.post("/settings", upload.single("image"), (req, res)=>{
     const phoneNumber = req.body.phoneNumber;
     const businessEmail = req.body.businessEmail;
     const typeOfWork = req.body.typeOfWork;
-    const city = req.body.city;
+    const county = req.body.county;
     const state = req.body.state;
 
     User.findById(req.user.id, (err, foundUser)=>{
@@ -203,7 +203,7 @@ app.post("/settings", upload.single("image"), (req, res)=>{
                 foundUser.phoneNumber = phoneNumber;
                 foundUser.businessEmail = businessEmail;
                 foundUser.typeOfWork = typeOfWork;
-                foundUser.city = city;
+                foundUser.county = county;
                 foundUser.state = state;
 
                 if(req.file){
