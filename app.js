@@ -81,9 +81,9 @@ const userSchema = new mongoose.Schema({
     state: String,
     county: String,
     typeOfWork: String,
-    languages: [], //Make an array
-    certifications: [], //Make an array
-    skills: [], //Make an array
+    languages: [],
+    certifications: [], 
+    skills: [], 
     completedJobs: []
 });
 
