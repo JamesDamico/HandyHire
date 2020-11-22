@@ -1,5 +1,7 @@
 <%- include("../views/partials/header.ejs") -%>
 <script defer src="../Javascript/stateCountyDependantDropdown.js"></script>
+<script defer src="../Javascript/typeOfWork.js"></script>
+
 <section>
    <!--*********************-->
    <!--* Settings Container *-->
@@ -48,7 +50,6 @@
                               <%} else { %>
                                  <option value="" selected="selected">Please select state first</option>
                               <%}%>
-                              
                            </select>
                         </div>
 
@@ -76,7 +77,14 @@
                         </div>
                         <div class= "form-group">
                            <label for="type_of_work"><i class="fas fa-briefcase"></i> Type of Work</label>
-                           <input class="form-control" type="text" id="type_of_work" placeholder=" Type of Work" name="typeOfWork" value="<%= user.typeOfWork %>">
+                           <!-- <input class="form-control" type="text" id="type_of_work" placeholder=" Type of Work" name="typeOfWork" value="<%= user.typeOfWork %>"> -->
+                           <select class="browser-default custom-select" id="typeOfWorkSelect" name="typeOfWork">
+                              <%if(user.typeOfWork){%>
+                                 <option hidden><%= user.typeOfWork %></option>
+                              <%} else { %>
+                                 <option value="" selected="selected">Choose one</option>
+                              <%}%>
+                           </select>
                         </div>
                      </div>
                   </div>
