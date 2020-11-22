@@ -102,7 +102,7 @@ var statesAndCounties = {
     "Wyoming": ["Albany", "Big Horn", "Campbell", "Carbon", "Converse", "Crook", "Fremont", "Goshen", "Hot Springs", "Johnson", "Laramie", "Lincoln", "Natrona", "Niobrara", "Park", "Platte", "Sheridan", "Sublette", "Sweetwater", "Teton", "Uinta", "Washakie", "Weston"]
 }
 
-window.onload = function() {
+$(window).on('load', function() {
     var stateSelect = document.getElementById("stateSelect");
     var countySelect = document.getElementById("countySelect");
 
@@ -118,5 +118,4 @@ window.onload = function() {
           countySelect.options[countySelect.options.length] = new Option(z[i], z[i]);
         }
     }  
-}
-
+});

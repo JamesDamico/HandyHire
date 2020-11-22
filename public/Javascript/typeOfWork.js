@@ -7,10 +7,10 @@ var typeOfWork = ["Additions & Remodeling", "Air Conditioning", "Appliances", "A
 "Windows"
 ]
 
-window.onload = function() {
+$(window).on('load', function() {
     var typeOfWorkSelect = document.getElementById("typeOfWorkSelect");
 
     for(let i = 0; i < typeOfWork.length; i++){
         typeOfWorkSelect.options[typeOfWorkSelect.options.length] = new Option(typeOfWork[i], typeOfWork[i]);
     }
-}
+});
