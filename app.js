@@ -101,6 +101,7 @@ app.use((req, res, next)=>{
     res.locals.user = req.user;
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.noneFound = req.flash("noneFound");
     next();
 });
 
@@ -146,20 +147,10 @@ app.get("/error", (req, res)=>{
     res.render("error.ejs");
 });
 
-//Browse Route
-app.get("/browse", (req, res)=>{
-    res.render("browse.ejs");
-});
-
 //Logout Route
 app.get("/logout", (req, res)=>{
     req.logout();
     res.redirect("/");
-});
-
-//Browse Handymen
-app.get("/browse", (req, res)=>{
-    res.render("browse.ejs")
 });
 
 //Login Post Route
@@ -316,6 +307,35 @@ app.post("/deleteCompletedJob", (req, res)=>{
 
     req.user.save(()=>{
         res.redirect("/settings");
+    });
+});
+
+//Browse Handymen
+app.get("/browse", (req, res)=>{
+    res.render("browse.ejs", {
+        foundHandyMen: []
+    });
+});
+
+app.post("/browse", (req, res)=>{
+    const fState = req.body.state;
+    const fCounty = req.body.county;
+    const fTypeOfWork = req.body.typeOfWork;
+
+    User.find({$and: [{state: fState}, {county: fCounty}, {typeOfWork: fTypeOfWork}]}, (err, found)=>{
+        if(err){
+            console.log(err);
+        } else {
+            if(found.length){
+                res.render("browse.ejs", {
+                    foundHandyMen: found
+                });
+            } else {
+                req.flash("noneFound", "No " + fTypeOfWork + " Handy Men found in " + fCounty + ", " + fState);
+                res.redirect("/browse");
+            }
+
+        }
     });
 });
 

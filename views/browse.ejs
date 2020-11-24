@@ -20,6 +20,8 @@
         <!--Ends Search Bar Row-->
         <!--OR text-->
         <div style = "text-align: center; padding: 1rem 0 0 0;">- or -</div>
+      </form>
+      <form action="/browse" method="POST">
         <!--Filters Div-->
         <div id = "filters" >
            <div class = "row">
@@ -62,53 +64,37 @@
 
      <!--HandyMen Cards row-->
      <div class = "row">
-        <div class = "col-lg-3">
-           <div class="card">
-              <img class="card-img-top" src="../Images/handyman.png" alt="Card image">
-              <div class="card-body">
-                 <h5 id = "handyManName"class="card-title">Handyman Name<i id = "handyManVerification" class="fas fa-check-double fa-xs"></i></h5>
-                 <p id = "handyManType"><i class="fas fa-briefcase"></i> Type of Work</p>
-                 <p id = "handyManAddress"><i class="fas fa-map-marked"></i> <span id = "handyManCity">City</span>, <span id = "handyManState">State</span></p>
-                 <a href="#" class="btn btn-dark"><i class="far fa-eye"></i> View Profile</a>
-              </div>
-           </div>
-        </div>
-        <div class = "col-lg-3">
-           <div class="card">
-              <img class="card-img-top" src="../Images/handyman.png" alt="Card image">
-              <div class="card-body">
-                 <h5 class="card-title">Handyman Name<i id = "handyManVerification" class="fas fa-check-double fa-xs"></i></h5>
-                 <p><i class="fas fa-briefcase"></i> Type of Work</p>
-                 <p id = "handyManAddress"><i class="fas fa-map-marked"></i> <span id = "handyManCity">City</span>, <span id = "handyManState">State</span></p>
-                 <a href="#" class="btn btn-dark"><i class="far fa-eye"></i> View Profile</a>
-              </div>
-           </div>
-        </div>
-        <div class = "col-lg-3">
-           <div class="card">
-              <img class="card-img-top" src="../Images/handyman.png" alt="Card image">
-              <div class="card-body">
-                 <h5 class="card-title">Handyman Name<i id = "handyManVerification" class="fas fa-check-double fa-xs"></i></h5>
-                 <p><i class="fas fa-briefcase"></i> Type of Work</p>
-                 <p id = "handyManAddress"><i class="fas fa-map-marked"></i> <span id = "handyManCity">City</span>, <span id = "handyManState">State</span></p>
-                 <a href="#" class="btn btn-dark"><i class="far fa-eye"></i> View Profile</a>
-              </div>
-           </div>
-        </div>
-        <div class = "col-lg-3">
-         <div class="card">
-            <img class="card-img-top" src="../Images/handyman.png" alt="Card image">
-            <div class="card-body">
-               <h5 class="card-title">Handyman Name<i id = "handyManVerification" class="fas fa-check-double fa-xs"></i></h5>
-               <p><i class="fas fa-briefcase"></i> Type of Work</p>
-               <p id = "handyManAddress"><i class="fas fa-map-marked"></i> <span id = "handyManCity">City</span>, <span id = "handyManState">State</span></p>
-               <a href="#" class="btn btn-dark"><i class="far fa-eye"></i> View Profile</a>
+      <%if(foundHandyMen.length){%>
+         <% foundHandyMen.forEach(function(handyMan){ %>
+      
+            <div class = "col-lg-3">
+               <div class="card">
+                  <%if(handyMan.profilePicture.url) { %>
+                     <img class="card-img-top" src="<%=handyMan.profilePicture.url%>" alt="Card image">
+                  <%} else {%>
+                     <img class="card-img-top" src ="../Images/handyman.png" alt="Card image">
+                  <%}%>
+                  <div class="card-body">
+                     <h5 id = "handyManName"class="card-title"><%=handyMan.companyName%></h5>
+                     <p id = "handyManType"><i class="fas fa-briefcase"></i> <%=handyMan.typeOfWork%></p>
+                     <p id = "handyManAddress"><i class="fas fa-map-marked"></i> <span id = "handyManCity"><%=handyMan.county%></span>, <span id = "handyManState"><%=handyMan.state%></span></p>
+                     <a href="/users/<%=handyMan.username%>" class="btn btn-dark"><i class="far fa-eye"></i> View Profile</a>
+                  </div>
+               </div>
             </div>
-         </div>
-      </div>
+      
+        <% }); %>
+      <%} else {%>
+         <p>Enter search terms to find HandyMen</p>
+      <%}%>
+
+      <p class="errorMessage"><%= noneFound %></p>
+
      </div>
      <!--Ends HandyMen Cards Row-->
   </div>
   <!--Ends Browse Container-->
 </section>
 <%- include("../views/partials/footer.ejs") -%>
+
+
