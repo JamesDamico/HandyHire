@@ -9,9 +9,13 @@
          <div class = " col-lg-12 profile-header">
             <div class = "profile-img">
             <%if(foundUser.profilePicture.url) { %>
-               <img id = "handyManImage" src ="<%=foundUser.profilePicture.url%>">
+               <a target="_blank" href="<%=foundUser.profilePicture.url%>">
+                  <img class="thumbnailImage" id = "handyManImage" src ="<%=foundUser.profilePicture.url%>">
+               </a>
             <%} else {%>
-               <img id = "handyManImage" src ="../Images/handyman.png">
+               <a target="_blank" href="../Images/handyman.png">
+                  <img class="thumbnailImage" id = "handyManImage" src ="../Images/handyman.png">
+               </a>
             <%}%>
             </div>
             <div class = "profile-header-info">
@@ -98,7 +102,11 @@
                   <tr>
                      <td id = "handyManJobTitle"><%=element.title%></td>
                      <td id = "handyManJobDesc"><%=element.desc%></td>
-                     <td id = "handyManJobImg"><img src="<%=element.image.url%>" alt="" border=3 height=100 width=100></img></td>
+                     <td id = "handyManJobImg">
+                        <a target="_blank" href="<%=element.image.url%>">
+                           <img class="thumbnailImage" src="<%=element.image.url%>" alt="" border=3 height=100 width=100></img>
+                        </a>
+                     </td>
                   </tr>
                </tbody>
             </table>

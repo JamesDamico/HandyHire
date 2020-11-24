@@ -16,7 +16,10 @@
                   <button onclick= "switchTab(event, 'reviews')" class = "col-lg-4 tab-reviews btn btn-info btn-round">Reviews</button>
                   -->
             </div>
+
             <div id = "profileSettings"class = "row tab-content center">
+               <h3 class="profileSettingsHeaders">Basic Info</h3>
+               <hr>
                <form id = "profileForm" action="/settings" method="POST" enctype="multipart/form-data">
                   <div class="row">
                      <div class="col-lg-6">
@@ -90,6 +93,8 @@
                   <button class= "btn btn-info">Save Changes</button>
                </form>
 
+               <h3 class="profileSettingsHeaders">Attributes</h3>
+               <hr>
                <div class="row">
                   <!-- Certifications -->
                   <div class="col-lg-4">
@@ -182,10 +187,11 @@
 
 
 
+               <h3 class="profileSettingsHeaders">Completed Jobs</h3>
+               <hr>
                <div class="row" style = "margin-top: 1rem;">
                   <div class = "col-lg-12">
                   <div class= "form-group">
-                     <label for="completedJobs"><i class="fas fa-check-square"></i> Completed Jobs</label>
                   </div>
 
                   <% for(let i = 0; i < user.completedJobs.length; i++){ %>

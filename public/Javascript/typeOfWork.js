@@ -4,7 +4,7 @@ var typeOfWork = ["Additions & Remodeling", "Air Conditioning", "Appliances", "A
 "Docks", "Doors", "Drywall & Plaster", "Electrical", "Excavation", "Fans", "Fences", "Fireplaces", "Flooring & Carpet", "Fountains & Ponds", "Furniture", "Garages", "Gutters", 
 "Handyman Services", "Heating", "Home Inspection", "Home Maintenance", "Home Security", "Insulation", "Landscaping", "Locksmith", "Mold & Asbestos Services", "Moving",
 "New Home Builder", "Painting", "Paving", "Pest Control", "Plumbing", "Roofing", "Septic Tanks", "Sheds & Enclosures", "Siding", "Snow Removal", "Swimming Pools", "Tile", "Tree Service", 
-"Windows"
+"Windows", "Welding"
 ]
 
 $(window).on('load', function() {
