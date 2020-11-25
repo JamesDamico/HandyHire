@@ -138,13 +138,9 @@ app.get("/users/:username", (req, res)=>{
                 foundUser: foundUser
             });
         } else {
-            res.redirect("/");
+            res.render("error.ejs");
         }
     });
-});
-
-app.get("/error", (req, res)=>{
-    res.render("error.ejs");
 });
 
 //Logout Route
@@ -338,6 +334,12 @@ app.post("/browse", (req, res)=>{
         }
     });
 });
+
+//Error404
+app.use((req,res) =>{
+    res.status(404).render("error.ejs");
+});
+
 
 //Establishing connection to the server
 app.listen(process.env.PORT || port, ()=>{
