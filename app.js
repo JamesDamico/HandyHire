@@ -84,7 +84,8 @@ const userSchema = new mongoose.Schema({
     languages: [],
     certifications: [], 
     skills: [], 
-    completedJobs: []
+    completedJobs: [],
+    viewable: Boolean
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -180,34 +181,33 @@ app.post("/settings", upload.single("image"), (req, res)=>{
     const county = req.body.county;
     const state = req.body.state;
 
-    User.findById(req.user.id, (err, foundUser)=>{
-        if(err){
-            console.log(err);
-        } else {
-            if(foundUser){
-                foundUser.companyName = companyName;
-                foundUser.bio = bio;
-                foundUser.phoneNumber = phoneNumber;
-                foundUser.businessEmail = businessEmail;
-                foundUser.typeOfWork = typeOfWork;
-                foundUser.county = county;
-                foundUser.state = state;
+    req.user.companyName = companyName;
+    req.user.bio = bio;
+    req.user.phoneNumber = phoneNumber;
+    req.user.businessEmail = businessEmail;
+    req.user.typeOfWork = typeOfWork;
+    req.user.county = county;
+    req.user.state = state;
+    
+    if(req.user.state != "" && req.user.county != "" && req.user.typeOfWork != "" && req.user.companyName != "" && req.user.phoneNumber != "" 
+    && req.user.businessEmail != "" && req.user.bio != ""){
+            req.user.viewable = true;
+    } else {
+        req.user.viewable = false;
+    }
 
-                if(req.file){
-                    if(foundUser.profilePicture.filename != null){
-                        const file = foundUser.profilePicture.filename;
-                        file.replace("HandyHire/", "");
-                        cloudinary.uploader.destroy(file);
-                    }
-                    foundUser.profilePicture.url = req.file.path;
-                    foundUser.profilePicture.filename = req.file.filename;
-                }
-
-                foundUser.save(()=>{
-                    res.redirect("/settings");
-                });
-            }
+    if(req.file){
+        if(req.user.profilePicture.filename != null){
+            const file = req.user.profilePicture.filename;
+            file.replace("HandyHire/", "");
+            cloudinary.uploader.destroy(file);
         }
+        req.user.profilePicture.url = req.file.path;
+        req.user.profilePicture.filename = req.file.filename;
+    }
+
+    req.user.save(()=>{
+        res.redirect("/settings");
     });
 });
 
@@ -318,7 +318,7 @@ app.post("/browse", (req, res)=>{
     const fCounty = req.body.county;
     const fTypeOfWork = req.body.typeOfWork;
 
-    User.find({$and: [{state: fState}, {county: fCounty}, {typeOfWork: fTypeOfWork}]}, (err, found)=>{
+    User.find({$and: [{state: fState}, {county: fCounty}, {typeOfWork: fTypeOfWork}, {viewable: true}]}, (err, found)=>{
         if(err){
             console.log(err);
         } else {

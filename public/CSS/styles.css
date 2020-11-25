@@ -402,6 +402,14 @@ footer{
     margin-top: 3rem;
 }
 
+.visibile {
+    color: green;
+}
+
+.notVisibile {
+    color: red;
+}
+
 /******************************/
 /*******Browse Handymen********/
 /******************************/

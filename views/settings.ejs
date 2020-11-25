@@ -19,6 +19,11 @@
 
             <div id = "profileSettings"class = "row tab-content center">
                <h3 class="profileSettingsHeaders">Basic Info</h3>
+               <%if(user.viewable === true) { %>
+                  <p class="visibile">* Profile Visibile on Browse Page</p>
+               <%} else {%>
+                  <p class="notVisibile">* Fill in Required Fields to be Seen on Browse Page</p>
+               <%}%>
                <hr>
                <form id = "profileForm" action="/settings" method="POST" enctype="multipart/form-data">
                   <div class="row">
@@ -33,7 +38,10 @@
 
 
                         <div class= "form-group">
-                           <label for="enter_state"><i class="fas fa-city"></i> State</label>
+                           <label for="enter_state"><i class="fas fa-city"></i> State </label>
+                           <%if(user.state === "") { %>
+                              <span class="notVisibile">* Required Field!</span>
+                           <%}%>
                            <select class="browser-default custom-select" name="state" id="stateSelect">
                               <%if(user.state){%>
                                  <option hidden><%= user.state %></option>
@@ -46,6 +54,9 @@
 
                         <div class= "form-group">
                            <label for="enter_county"><i class="fas fa-city"></i> County</label>
+                           <%if(user.county === "") { %>
+                              <span class="notVisibile">* Required Field!</span>
+                           <%}%>
                            <select class="browser-default custom-select" name="county" id="countySelect">
                               <%if(user.state){%>
                                  <option hidden><%= user.county %></option>
@@ -61,25 +72,39 @@
 
                         <div class= "form-group">
                            <label for="update_bio"><i class="fas fa-atlas"></i> Bio</label>
+                           <%if(user.bio === "") { %>
+                              <span class="notVisibile">* Required Field!</span>
+                           <%}%>
                            <textarea class="form-control" id="update_bio" type="text" rows="3" name="bio" placeholder = "Bio"><%= user.bio %></textarea>
                         </div>
                      </div>
                      <div class="col-lg-6">
                         <div class= "form-group">
                            <label for="companyName"><i class="far fa-envelope"></i> Company Name</label>
+                           <%if(user.companyName === "") { %>
+                              <span class="notVisibile">* Required Field!</span>
+                           <%}%>
                            <input class="form-control" type="text" id="companyName" placeholder="Company Name" name="companyName" value="<%= user.companyName %>"> 
                         </div>
                         <div class= "form-group">
                            <label for="work_email"><i class="far fa-envelope"></i> Business Email</label>
+                           <%if(user.businessEmail === "") { %>
+                              <span class="notVisibile">* Required Field!</span>
+                           <%}%>
                            <input class="form-control" type="text" id="work_email" placeholder="Email" name="businessEmail" value="<%= user.businessEmail %>"> 
                         </div>
                         <div class= "form-group">
                            <label for="change_phoneNum"><i class="fas fa-phone-alt"></i> Phone Number</label>
+                           <%if(user.phoneNumber === "") { %>
+                              <span class="notVisibile">* Required Field!</span>
+                           <%}%>
                            <input class="form-control" id="change_phoneNum" type="text" placeholder=" Phone Number" name="phoneNumber" value="<%= user.phoneNumber %>">
                         </div>
                         <div class= "form-group">
                            <label for="type_of_work"><i class="fas fa-briefcase"></i> Type of Work</label>
-                           <!-- <input class="form-control" type="text" id="type_of_work" placeholder=" Type of Work" name="typeOfWork" value="<%= user.typeOfWork %>"> -->
+                           <%if(user.typeOfWork === "") { %>
+                              <span class="notVisibile">* Required Field!</span>
+                           <%}%>
                            <select class="browser-default custom-select" id="typeOfWorkSelect" name="typeOfWork">
                               <%if(user.typeOfWork){%>
                                  <option hidden><%= user.typeOfWork %></option>
