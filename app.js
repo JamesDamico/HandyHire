@@ -160,7 +160,16 @@ app.post("/signup", (req, res)=>{
     User.register({username: req.body.username, email: req.body.email}, req.body.password, function(err, user){
         if(!err){
             passport.authenticate("local")(req, res, function(){
-                res.redirect("/");
+                req.user.state = null;
+                req.user.county = null;
+                req.user.typeOfWork = null;
+                req.user.bio = null;
+                req.user.companyName = null;
+                req.user.businessEmail = null;
+                req.user.phoneNumber = null;
+                req.user.save(()=>{
+                    res.redirect("/");
+                });
             });
         } else {
             console.log(err.message);
