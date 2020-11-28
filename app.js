@@ -152,7 +152,7 @@ app.get("/logout", (req, res)=>{
 
 //Login Post Route
 app.post("/login", passport.authenticate("local", {failureFlash: true, failureRedirect: "/login"}), (req, res)=>{
-    res.redirect("/");
+    res.redirect("/settings");
 });
 
 //Signup Post Route
@@ -168,7 +168,7 @@ app.post("/signup", (req, res)=>{
                 req.user.businessEmail = null;
                 req.user.phoneNumber = null;
                 req.user.save(()=>{
-                    res.redirect("/");
+                    res.redirect("/settings");
                 });
             });
         } else {
@@ -340,8 +340,40 @@ app.post("/browse", (req, res)=>{
                 res.redirect("/browse");
             }
 
-        }
+        }     
     });
+});
+
+app.post("/deleteAccount", (req, res)=>{
+    const accountConfirmation = req.body.accountDeleteConfirm;
+    const condition = "HandyHire.us/" + req.user.username;
+
+    if(accountConfirmation === condition){
+        //Delete stored pictures
+
+        //Profile Picture
+        if(req.user.profilePicture.filename != null){
+            const file = req.user.profilePicture.filename;
+            file.replace("HandyHire/", "");
+            cloudinary.uploader.destroy(file);
+        }
+
+        //Completed Jobs Pictures
+        req.user.completedJobs.forEach(element => {
+            if(element.image.filename != null){
+                const file = element.image.filename;
+                file.replace("HandyHire/", "");
+                cloudinary.uploader.destroy(file);
+            }
+        });
+
+        //Delete User from MongoDB
+        User.deleteOne({username: req.user.username}, ()=>{
+            res.redirect("/");
+        });
+    } else {
+        res.render("error.ejs");
+    }
 });
 
 //Error404
