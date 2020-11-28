@@ -61,7 +61,11 @@
         </div>
         <!--Ends Filters Div-->
      </form>
-
+     
+     <p></p>
+     <%if(foundHandyMen.length) {%>
+         <p><%=foundHandyMen.length%> Handymen Found</p>
+     <%}%>
      <!--HandyMen Cards row-->
      <div class = "row">
       <%if(foundHandyMen.length){%>

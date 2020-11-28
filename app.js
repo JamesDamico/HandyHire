@@ -349,16 +349,14 @@ app.post("/deleteAccount", (req, res)=>{
     const condition = "HandyHire.us/" + req.user.username;
 
     if(accountConfirmation === condition){
-        //Delete stored pictures
-
-        //Profile Picture
+        //Delete Profile Picture
         if(req.user.profilePicture.filename != null){
             const file = req.user.profilePicture.filename;
             file.replace("HandyHire/", "");
             cloudinary.uploader.destroy(file);
         }
 
-        //Completed Jobs Pictures
+        //Delete Completed Jobs Pictures
         req.user.completedJobs.forEach(element => {
             if(element.image.filename != null){
                 const file = element.image.filename;
