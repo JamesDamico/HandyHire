@@ -344,6 +344,10 @@ app.post("/browse", (req, res)=>{
     });
 });
 
+/**
+ * Delete Account Post Route
+ * When triggered, deletes account and all pictures associated to the account
+ */
 app.post("/deleteAccount", (req, res)=>{
     const accountConfirmation = req.body.accountDeleteConfirm;
     const condition = "HandyHire.us/" + req.user.username;
@@ -374,13 +378,19 @@ app.post("/deleteAccount", (req, res)=>{
     }
 });
 
-//Error404
+/**
+ * Error 404
+ * Catches all 404 errors and page not found errors
+ */
 app.use((req,res) =>{
     res.status(404).render("error.ejs");
 });
 
 
-//Establishing connection to the server
+/**
+ * app.listen
+ * Sets up a connection on port 3000 or the port assigned by Heroku
+ */
 app.listen(process.env.PORT || port, ()=>{
     console.log("Server running on port: " + port);
 });

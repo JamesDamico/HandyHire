@@ -55,7 +55,15 @@
               <a class="nav-link" href="/#how-it-works">How It Works</a>
             </li>
             <li class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" id="accountNavItem" data-toggle="dropdown">Account</a>
+              <%if(user) {
+                if(user.profilePicture.url){ %>
+                  <a href="#" class="nav-link dropdown-toggle" id="accountNavItem" data-toggle="dropdown"><img src="<%= user.profilePicture.url %>" alt="handymanIcon" width="32" height="32" style ="border-radius: 50%;"></a>
+                <%} else { %>
+                  <a href="#" class="nav-link dropdown-toggle" id="accountNavItem" data-toggle="dropdown"><img src="../Images/handyman.png" alt="handymanIcon" width="32" height="32" style ="border-radius: 50%;"></a>
+                <%}%>
+              <%} else {%>
+                <a href="#" class="nav-link dropdown-toggle" id="accountNavItem" data-toggle="dropdown">Account</a>
+              <%}%>
               <div class="dropdown-menu ">
                 <%if(user){%>
                  <a class= "dropdown-item">Signed in as <br> <strong><%= user.username %></strong></a>
