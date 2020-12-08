@@ -205,6 +205,54 @@ footer{
     border-radius: 10%;
 }
 
+.profile-rating{
+    top: 59%;
+    right: 1%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10%;
+}
+
+/*Profile Modal*/
+.starRating:not(old){
+    display        : inline-block;
+    width          : 7.5em;
+    height         : 1.5em;
+    overflow       : hidden;
+    vertical-align : bottom;
+}
+  
+.starRating:not(old) > input{
+    margin-right : -50%;
+    opacity      : 0;
+}
+  
+.starRating:not(old) > label{
+    display         : block;
+    float           : right;
+    position        : relative;
+    background      : url('../Images/star-off.svg');
+    background-size : contain;
+}
+  
+.starRating:not(old) > label:before{
+    content         : '';
+    display         : block;
+    width           : 1.5em;
+    height          : 1.5em;
+    background      : url('../Images/star-on.svg');
+    background-size : contain;
+    opacity         : 0;
+    transition      : opacity 0.2s linear;
+}
+  
+.starRating:not(old) > label:hover:before,
+.starRating:not(old) > label:hover ~ label:before,
+.starRating:not(:hover) > :checked ~ label:before{
+    opacity : 1;
+}
+
 /* Profile Body */
 .profile-body h5{
     padding: 2%;
