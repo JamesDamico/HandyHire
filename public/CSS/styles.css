@@ -205,15 +205,6 @@ footer{
     border-radius: 10%;
 }
 
-.profile-rating{
-    top: 59%;
-    right: 1%;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10%;
-}
-
 /*Profile Modal*/
 .starRating:not(old){
     display        : inline-block;
@@ -539,6 +530,10 @@ footer{
 /* Reviews */
 
 .blur {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     color: transparent;
     text-shadow: 0 0 10px #000;
-  }
+}
