@@ -54,6 +54,22 @@ p{
     background-color: lightblue;
 }
 
+.notification {    
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+}
+  
+.notification .badge {
+    position: absolute;
+    margin: 2px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+}
+
 /* ***** */
 /* Title */
 /* ***** */
@@ -141,6 +157,10 @@ footer{
 /*   Profile    */
 /* ************ */
 .profile p{
+    color: black;
+}
+
+.profile td{
     color: black;
 }
 
