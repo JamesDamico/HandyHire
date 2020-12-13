@@ -19,15 +19,25 @@
             <%}%>
             </div>
             <div class = "profile-header-info">
-               <h3 id = "handyManName"><%=foundUser.companyName%><i id = "handyManVerification" class="fas fa-check-double fa-xs"></i></h3>
+               <h3 id = "handyManName"><%=foundUser.companyName%></h3>
                <p id = "handyManType"><i class="fas fa-briefcase"></i> <%=foundUser.typeOfWork%></p>
                <div class = "profile-stars">
-                    <i class = "fa fa-star" style = "color: #ffc700;"></i>
-                    <i class = "fa fa-star" style = "color: #ffc700;"></i>
-                    <i class = "fa fa-star" style = "color: #ffc700;"></i>
-                    <i class = "fa fa-star" style = "color: #ffc700;"></i>
-                    <i class = "fa fa-star"></i>
-                    <p><span id ="handyManReviewCounter">123</span> reviews</p>
+                  <%if(Math.round(foundUser.reviews.averageRating) == 1){%>
+                     <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+
+                  <%} else if(Math.round(foundUser.reviews.averageRating) == 2){%>
+                     <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+
+                  <%} else if(Math.round(foundUser.reviews.averageRating) == 3){%>
+                     <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+
+                  <%} else if(Math.round(foundUser.reviews.averageRating) == 4){%>
+                     <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i></td>
+
+                  <%} else if(Math.round(foundUser.reviews.averageRating) == 5){%>
+                     <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i></td>
+                  <%}%>
+                    <p><span id ="handyManReviewCounter"><%=foundUser.reviews.yourReviews.length%></span> reviews</p>
                </div>
                <div class = "profile-option">
                   <a class = "btn btn-info btn-round" onclick="history.back()"><i class="fas fa-chevron-circle-left"></i> Back</a>
@@ -127,26 +137,43 @@
 
       <!--Reviews Row-->
       
-         <div class = "row profile-body">
+      <div class = "row profile-body">
          <div class = "col-lg-12">
             <h5><i class="fas fa-users"></i> Reviews</h5>
-            <!-- Table -->
-            <table class="table">
-               <thead>
-                  <tr>
-                     <th scope="col">Name</th>
-                     <th scope="col">Rating</th>
-                     <th scope="col">Review</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td id = "homeownerName">John Doe</td>
-                     <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
-                     <td id = "homeownerReview">Lorem ipsum</td>
-                  </tr>
-               </tbody>
-            </table>
+
+            <%foundUser.reviews.yourReviews.forEach(element => {%>
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Review</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td id = "homeownerName"><%=element.name%></td>
+                        <%if(element.rating == 1){%>
+                           <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+
+                        <%} else if(element.rating == 2){%>
+                           <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+
+                        <%} else if(element.rating == 3){%>
+                           <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+
+                        <%} else if(element.rating == 4){%>
+                           <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i></td>
+
+                        <%} else {%>
+                           <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i></td>
+                        <%}%>
+                        <td id = "homeownerReview"><%=element.description%></td>
+                     </tr>
+                  </tbody>
+               </table>
+            <%});%>
+            
          </div>
       </div>
       
@@ -156,45 +183,48 @@
 </section>
 
 <%- include("../views/partials/footer.ejs") -%>
+
   <!--**********************-->
   <!--****Rate Modal**** -->
   <!--**********************-->
-  <div class="modal fade" id="reviewModal" role="dialog">
+<div class="modal fade" id="reviewModal" role="dialog">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <!-- Modal body-->
       <div class="modal-content">
          <div class="modal-header">
-            <h5 class="modal-title">Rate <%=foundUser.companyName%></h5>
+            <h5 class="modal-title">Rate: <%=foundUser.companyName%></h5>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
          <div class="modal-body">
-            <div class="d-flex flex-column text-center">
-             <form action = "" method = "POST">
+            <div class="d-flex flex-column text-center">    
                <%if(user){%>
-                 <div class="form-group">
-                   <label>Select rating:</label>
-                 </div>
-                 <div class="form-group">
-                  <span class="starRating">
-                     <input id="rating5" type="radio" name="rating" value="5">
-                     <label for="rating5">5</label>
-                     <input id="rating4" type="radio" name="rating" value="4">
-                     <label for="rating4">4</label>
-                     <input id="rating3" type="radio" name="rating" value="3">
-                     <label for="rating3">3</label>
-                     <input id="rating2" type="radio" name="rating" value="2">
-                     <label for="rating2">2</label>
-                     <input id="rating1" type="radio" name="rating" value="1">
-                     <label for="rating1">1</label>
-                  </span>
-                 </div>
-                 <div class="form-group">
-                   <label>Description (optional):</label>
-                </div>
-                <div class="form-group">
-                   <textarea  style="resize:none;" rows="3"  type = "text" placeholder = "In a few words state why you chose your rating and describe your overall experience with our handy man." class="form-control" id="message"></textarea>
-                </div>
-                <button type="submit" class="btn btn-info btn-block btn-round" style="text-align:center;"><i class="fas fa-check-circle"></i> Submit Review</button>
+                  <form action = "/submitReview" method = "POST">
+                     <input class="form-control" type="text" id="username" name="username" value="<%=foundUser.username%>" placeholder="index" autocomplete="off" readonly hidden>
+                     <div class="form-group">
+                        <label>Select rating:</label>
+                      </div>
+                      <div class="form-group">
+                       <span class="starRating">
+                          <input id="rating5" type="radio" name="rating" value="5">
+                          <label for="rating5">5</label>
+                          <input id="rating4" type="radio" name="rating" value="4">
+                          <label for="rating4">4</label>
+                          <input id="rating3" type="radio" name="rating" value="3">
+                          <label for="rating3">3</label>
+                          <input id="rating2" type="radio" name="rating" value="2">
+                          <label for="rating2">2</label>
+                          <input id="rating1" type="radio" name="rating" value="1">
+                          <label for="rating1">1</label>
+                       </span>
+                      </div>
+                      <div class="form-group">
+                        <label>Description (optional):</label>
+                     </div>
+                     <div class="form-group">
+                        <textarea  style="resize:none;" rows="3"  type ="text" placeholder = "In a few words state why you chose your rating and describe your overall experience with our handy man." class="form-control" name="description"></textarea>
+                     </div>
+                     <button type="submit" class="btn btn-info btn-block btn-round" style="text-align:center;"><i class="fas fa-check-circle"></i> Submit Review</button>
+                  </form>
                <%} else {%>
                 <div class="form-group">
                   <h3>You must be logged in to leave a rating</h3>
@@ -204,7 +234,6 @@
                   <a class= "btn btn-info btn-round" href="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
                 </div>
                <%}%>
-             </form>
             </div>
          </div>
          <div class="modal-footer">

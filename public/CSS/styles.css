@@ -535,3 +535,10 @@ footer{
 .thumbnailImage:hover {
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
+
+/* Reviews */
+
+.blur {
+    color: transparent;
+    text-shadow: 0 0 10px #000;
+  }

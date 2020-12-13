@@ -74,6 +74,8 @@ const userSchema = new mongoose.Schema({
         url: String,
         filename: String
     },
+    firstName: String,
+    lastName: String,
     companyName: String,
     bio: String,
     phoneNumber: String,
@@ -85,7 +87,12 @@ const userSchema = new mongoose.Schema({
     certifications: [], 
     skills: [], 
     completedJobs: [],
-    viewable: Boolean
+    viewable: Boolean,
+    reviews:{
+        reviewedAccounts: [],
+        yourReviews: [],
+        averageRating: Number
+    }
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -144,15 +151,6 @@ app.get("/users/:username", (req, res)=>{
     });
 });
 
-//Reviews Route
-app.get("/reviews", (req, res)=>{
-    if(req.isAuthenticated()){
-        res.render("reviews.ejs");
-    } else {
-        res.render("login.ejs");
-    }
-});
-
 //Logout Route
 app.get("/logout", (req, res)=>{
     req.logout();
@@ -191,6 +189,8 @@ app.post("/signup", (req, res)=>{
 //Settings Post Route
 app.post("/settings", upload.single("image"), (req, res)=>{
 
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
     const companyName = req.body.companyName;
     const bio = req.body.bio;
     const phoneNumber = req.body.phoneNumber;
@@ -199,6 +199,8 @@ app.post("/settings", upload.single("image"), (req, res)=>{
     const county = req.body.county;
     const state = req.body.state;
 
+    req.user.firstName = firstName;
+    req.user.lastName = lastName;
     req.user.companyName = companyName;
     req.user.bio = bio;
     req.user.phoneNumber = phoneNumber;
@@ -384,6 +386,48 @@ app.post("/deleteAccount", (req, res)=>{
         });
     } else {
         res.render("error.ejs");
+    }
+});
+
+app.post("/submitReview", (req, res)=>{
+    const username = req.body.username;
+    const review = {
+        name: req.user.firstName + " " + req.user.lastName,
+        rating: req.body.rating,
+        description: req.body.description
+    }
+
+    console.log(review.rating);
+    console.log(review.description);
+    console.log(username);
+
+    User.findOne({username: username}, (err, foundUser)=>{
+        if(foundUser){
+            foundUser.reviews.yourReviews.push(review);
+            
+            const numberOfRatings = foundUser.reviews.yourReviews.length;
+            let sumOfRatings = 0;
+            foundUser.reviews.yourReviews.forEach(element => {
+                sumOfRatings += parseInt(element.rating);
+            });
+
+            foundUser.reviews.averageRating = sumOfRatings / numberOfRatings;
+
+            foundUser.save(()=>{
+                res.redirect("back");
+            });
+        } else {
+            res.render("error.ejs");
+        }
+    });
+});
+
+//Reviews Route
+app.get("/reviews", (req, res)=>{
+    if(req.isAuthenticated()){
+        res.render("reviews.ejs");
+    } else {
+        res.render("login.ejs");
     }
 });
 
