@@ -1,0 +1,38 @@
+<%- include("../views/partials/header.ejs") -%>
+<section>
+    <!--*********************-->
+    <!--* Reviews Container *-->
+    <!--*********************-->
+    <div class = "container-fluid">
+        
+        <h3 style="margin-top: 3rem;">Reviews</h3>
+        <!--Reviews Row-->
+        <div class = "row">
+            <div class = " col-lg-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Decision</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Review</th>
+                        </tr>
+                    </thead>
+                    <form class="item" action="/addDeleteReview" method="POST">
+                        <tbody>
+                            <tr>
+                                <td><button class= "btn btn-success" type="submit" value="languages"><i class="fas fa-check"></i> Approve</button><button class= "btn btn-danger" type="submit" value="languages"><i class="fas fa-times"></i> Reject</button></td>
+                                <td id = "homeownerName">John Doe</td>
+                                <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+                                <td id = "homeownerReview">Lorem ipsum</td>
+                            </tr>
+                        </tbody>     
+                    </form>
+                </table>
+            </div>
+        </div>
+        <!--Ends Reviews Rows-->
+    </div>
+    <!--Ends Reviews Container-->
+</section>
+<%- include("../views/partials/footer.ejs") -%>

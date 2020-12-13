@@ -144,6 +144,15 @@ app.get("/users/:username", (req, res)=>{
     });
 });
 
+//Reviews Route
+app.get("/reviews", (req, res)=>{
+    if(req.isAuthenticated()){
+        res.render("reviews.ejs");
+    } else {
+        res.render("login.ejs");
+    }
+});
+
 //Logout Route
 app.get("/logout", (req, res)=>{
     req.logout();
