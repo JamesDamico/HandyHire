@@ -54,19 +54,6 @@
             <p id = "handyManAddress"><i class="fas fa-city"></i><span id = "handyManCounty"> <%=foundUser.county%> County</span>, <span id = "handyManState"><%=foundUser.state%></span></p>
             <p id = "handyManPhone"><i class = "fa fa-phone"></i> <%=foundUser.phoneNumber%></p>
             <p id = "handyManEmail"><i class = "fa fa-envelope"></i> <%=foundUser.businessEmail%></p>
-            <!--
-            <div class = "profile-rating">
-              <div><h3 id = "handyManRating">4.8</h3></div>
-              <div class = "profile-stars">
-                <i class = "fa fa-star"></i>
-                <i class = "fa fa-star"></i>
-                <i class = "fa fa-star"></i>
-                <i class = "fa fa-star"></i>
-                <i class = "fa fa-star"></i>
-                <p><span id ="handyManReviewCounter">123</span> reviews</p>
-              </div>
-            </div>
-            -->
          </div>
          <!--Ends Profile Body Info Column-->
          <div class="col-lg-8 profile-bio">
@@ -139,39 +126,39 @@
          <div class = "col-lg-12">
             <h5><i class="fas fa-users"></i> Reviews</h5>
 
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th scope="col">Name</th>
+                     <th scope="col">Rating</th>
+                     <th scope="col">Review</th>
+                  </tr>
+               </thead>
+
             <%foundUser.reviews.yourReviews.forEach(element => {%>
-               <table class="table">
-                  <thead>
-                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Rating</th>
-                        <th scope="col">Review</th>
-                     </tr>
-                  </thead>
                   <tbody>
                      <tr>
                         <td id = "homeownerName"><%=element.name%></td>
                         <%if(element.rating == 1){%>
                            <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
-
+   
                         <%} else if(element.rating == 2){%>
                            <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
-
+   
                         <%} else if(element.rating == 3){%>
                            <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
-
+   
                         <%} else if(element.rating == 4){%>
                            <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i></td>
-
+   
                         <%} else {%>
                            <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star" style = "color: #ffc700;"></i></td>
                         <%}%>
                         <td id = "homeownerReview"><%=element.description%></td>
                      </tr>
                   </tbody>
-               </table>
             <%});%>
-            
+            </table>
          </div>
       </div>
       
@@ -196,7 +183,16 @@
          <div class="modal-body">
             <div class="d-flex flex-column text-center">    
                <%if(user){%>
-                  <form action = "/submitReview" method = "POST">
+                  <%if(user.username === foundUser.username){%>
+                     <div class="form-group">
+                        <h3>You can't leave a review for yourself!</h3>
+                      </div>
+                  <%} else if((user.firstName === null || user.firstName === "") || user.lastName === null || user.lastName === "") {%>
+                     <div class="form-group">
+                        <h3>You must set your first name and last name in settings before you can leave a review!</h3>
+                      </div> 
+                  <%}else if(!user.reviews.reviewedAccounts.includes(foundUser.username)){%>
+                     <form action = "/submitReview" method = "POST">
                      <input class="form-control" type="text" id="username" name="username" value="<%=foundUser.username%>" placeholder="index" autocomplete="off" readonly hidden>
                      <div class="form-group">
                         <label>Select rating:</label>
@@ -223,6 +219,11 @@
                      </div>
                      <button type="submit" class="btn btn-info btn-block btn-round" style="text-align:center;"><i class="fas fa-check-circle"></i> Submit Review</button>
                   </form>
+                  <%} else {%>
+                     <div class="form-group">
+                        <h3>You have already left a review for this user!</h3>
+                      </div>
+                  <%}%>
                <%} else {%>
                 <div class="form-group">
                   <h3>You must be logged in to leave a rating</h3>

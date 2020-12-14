@@ -18,16 +18,20 @@
                             <th scope="col">Review</th>
                         </tr>
                     </thead>
-                    <form class="item" action="/addDeleteReview" method="POST">
-                        <tbody>
-                            <tr>
-                                <td><button class= "btn btn-success" type="submit" value="languages"><i class="fas fa-check"></i> Approve</button><button class= "btn btn-danger" type="submit" value="languages"><i class="fas fa-times"></i> Reject</button></td>
-                                <td id = "homeownerName">John Doe</td>
-                                <td id = "homeownerRating"><i class="fas fa-star" style = "color: #ffc700;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
-                                <td id = "homeownerReview" class="blur">Lorem ipsum</td>
-                            </tr>
-                        </tbody>     
-                    </form>
+                    
+                    <%for(let i = 0; i < user.reviews.reviewsWaitingApproval.length; i++){%>
+                        <form class="item" action="/approveRejectReview" method="POST">
+                            <tbody>
+                                <tr>
+                                    <td><button class= "btn btn-success" type="submit" name="action" value="approve"><i class="fas fa-check"></i> Approve</button><button class= "btn btn-danger" type="submit" name="action" value="reject"><i class="fas fa-times"></i> Reject</button></td>
+                                    <input class="form-control" type="text" id="index" name="index" value="<%=i%>" placeholder="index" autocomplete="off" readonly hidden>
+                                    <td id = "homeownerName"><%=user.reviews.reviewsWaitingApproval[i].name%></td>
+                                    <td id = "homeownerRating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+                                    <td id = "homeownerReview" class="blur"><%=user.reviews.reviewsWaitingApproval[i].description%></td>
+                                </tr>
+                            </tbody>     
+                        </form>
+                    <%}%>
                 </table>
             </div>
         </div>

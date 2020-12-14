@@ -91,6 +91,7 @@ const userSchema = new mongoose.Schema({
     reviews:{
         reviewedAccounts: [],
         yourReviews: [],
+        reviewsWaitingApproval: [],
         averageRating: Number
     }
 });
@@ -167,6 +168,8 @@ app.post("/signup", (req, res)=>{
     User.register({username: req.body.username, email: req.body.email}, req.body.password, function(err, user){
         if(!err){
             passport.authenticate("local")(req, res, function(){
+                req.user.firstName = null;
+                req.user.lastName = null;
                 req.user.state = null;
                 req.user.county = null;
                 req.user.typeOfWork = null;
@@ -392,28 +395,20 @@ app.post("/deleteAccount", (req, res)=>{
 app.post("/submitReview", (req, res)=>{
     const username = req.body.username;
     const review = {
-        name: req.user.firstName + " " + req.user.lastName,
+        reviewerUsername: req.user.username,
+        name: req.user.firstName + "" + req.user.lastName,
         rating: req.body.rating,
-        description: req.body.description
+        description: req.body.description,
     }
 
-    console.log(review.rating);
-    console.log(review.description);
-    console.log(username);
+    req.user.reviews.reviewedAccounts.push(username);
 
     User.findOne({username: username}, (err, foundUser)=>{
         if(foundUser){
-            foundUser.reviews.yourReviews.push(review);
+            foundUser.reviews.reviewsWaitingApproval.push(review);
             
-            const numberOfRatings = foundUser.reviews.yourReviews.length;
-            let sumOfRatings = 0;
-            foundUser.reviews.yourReviews.forEach(element => {
-                sumOfRatings += parseInt(element.rating);
-            });
-
-            foundUser.reviews.averageRating = sumOfRatings / numberOfRatings;
-
             foundUser.save(()=>{
+                req.user.save(()=>{});
                 res.redirect("back");
             });
         } else {
@@ -428,6 +423,49 @@ app.get("/reviews", (req, res)=>{
         res.render("reviews.ejs");
     } else {
         res.render("login.ejs");
+    }
+});
+
+app.post("/approveRejectReview", (req, res)=>{
+    const action = req.body.action;
+    const index = req.body.index;
+
+    if(action == "approve"){
+        const review = req.user.reviews.reviewsWaitingApproval[index];
+        req.user.reviews.reviewsWaitingApproval.splice(index, 1);
+
+        req.user.reviews.yourReviews.push(review);
+
+        const numberOfRatings = req.user.reviews.yourReviews.length;
+        let sumOfRatings = 0;
+        req.user.reviews.yourReviews.forEach(element => {
+            sumOfRatings += parseInt(element.rating);
+        });
+
+        req.user.reviews.averageRating = sumOfRatings / numberOfRatings;
+
+        req.user.save(()=>{
+            res.redirect("/reviews");
+        });      
+
+    } else if(action == "reject"){
+
+        User.findOne({username: req.user.reviews.reviewsWaitingApproval[index].reviewerUsername}, (err, foundUser)=>{
+            if(foundUser){
+                foundUser.reviews.reviewedAccounts.splice(foundUser.reviews.reviewedAccounts.indexOf(req.user.username), 1); 
+
+                req.user.reviews.reviewsWaitingApproval.splice(index, 1);
+                foundUser.save(()=>{
+                    req.user.save(()=>{
+                        res.redirect("/reviews");
+                    });          
+                });
+            } else {
+                res.render("error.ejs");
+            }
+        });
+    } else {
+        res.render("error.ejs");
     }
 });
 
