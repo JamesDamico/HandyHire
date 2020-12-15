@@ -396,7 +396,7 @@ app.post("/submitReview", (req, res)=>{
     const username = req.body.username;
     const review = {
         reviewerUsername: req.user.username,
-        name: req.user.firstName + "" + req.user.lastName,
+        name: req.user.firstName + " " + req.user.lastName,
         rating: req.body.rating,
         description: req.body.description,
     }
