@@ -9,10 +9,9 @@ Handymen’s profiles have multiple pieces of information, designed to hold as m
 This system should provide a reputable and reliable solution for this current problem. It will allow homeowners to continue work on ongoing projects, as well as provide work and income to handymen who are struggling throughout the pandemic. 
 
 
-### Built With
-- Visual Studio Code
-- Node.JS
+### Tech Stack
 - MongoDB
+- NodeJS
 
 ## Authors
 - **James D'Amico** - Lead Full-Stack Developer - [Github](https://github.com/JamesDamico)
