@@ -225,6 +225,19 @@ footer{
     border-radius: 10%;
 }
 
+.profile-option .col-lg-4{
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    text-align: right;
+}
+
+.profile-option .row{
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
 /*Rating Modal*/
 .starRating:not(old){
     display        : inline-block;
@@ -510,11 +523,11 @@ footer{
     margin-top: 3rem;
 }
 
-.visibile {
+.visible {
     color: green;
 }
 
-.notVisibile {
+.notVisible {
     color: red;
 }
 
