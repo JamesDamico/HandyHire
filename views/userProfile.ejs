@@ -218,7 +218,7 @@
                      <div class="form-group">
                         <textarea  style="resize:none;" rows="3"  type ="text" placeholder = "In a few words state why you chose your rating and describe your overall experience with our handy man." class="form-control" name="description"></textarea>
                      </div>
-                     <button type="submit" class="btn btn-info btn-block btn-round" style="text-align:center;"><i class="fas fa-check-circle"></i> Submit Review</button>
+                     <button type="submit" class="btn btn-info btn-block btn-round" style="text-align:center;"><i class="fas fa-check-circle"></i> Submit Review for Approval</button>
                   </form>
                   <%} else {%>
                      <div class="form-group">
@@ -270,7 +270,7 @@
                <div class="col-md-12">
                   <div class="clipboard">
                      <div class="input-group">
-                        <input class = "form-control" type="text" value="www.handyhire.us/users/<%=foundUser.username%>" id="myInput">
+                        <input class = "form-control" type="text" value="www.handyhire.us/users/<%=foundUser.username%>" id="myInput" readonly>
                         <div class="input-group-append">
                            <button class="input-group-text" onclick="myFunction()">Copy text </button>
                         </div>
@@ -284,7 +284,6 @@
                     copyText.select();
                     copyText.setSelectionRange(0, 99999)
                     document.execCommand("copy");
-                    alert("Copied the text: " + copyText.value);
                   }
                   </script>
                <!--End of CopyClipboard Script-->
