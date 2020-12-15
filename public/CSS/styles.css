@@ -571,11 +571,26 @@ footer{
     background-color: #fabc3d;
 }
 
-.browse .card-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
-}
+.browsepic {
+    position: relative;
+    overflow: hidden;
+  }
+  
+ .browsepic:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+  
+ .browsepic img {
+    width: auto;
+    height: 100%;
+    max-width: none;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+  }
 
 /* ********* */
 /* Error 404 */

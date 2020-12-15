@@ -74,7 +74,9 @@
             <div class = "col-lg-3">
                <div class="card">
                   <%if(handyMan.profilePicture.url) { %>
-                     <img class="card-img-top" src="<%=handyMan.profilePicture.url%>" alt="Card image">
+                     <div class="browsepic">
+                        <img class="card-img-top" src="<%=handyMan.profilePicture.url%>" alt="Card image">
+                     </div>
                   <%} else {%>
                      <img class="card-img-top" src ="../Images/handyman.png" alt="Card image">
                   <%}%>
