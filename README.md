@@ -11,6 +11,8 @@ This system should provide a reputable and reliable solution for this current pr
 
 ### Tech Stack
 - MongoDB
+- Express
+- EJS
 - NodeJS
 
 ## Authors
