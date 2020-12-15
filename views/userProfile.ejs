@@ -41,6 +41,7 @@
                </div>
                <div class = "profile-option">
                   <a class = "btn btn-info btn-round" data-toggle="modal" data-target="#reviewModal">Rate <i class="far fa-star"></i></a>
+                  <a class = "btn btn-info btn-round" data-toggle="modal" data-target="#shareModal">Share <i class="fas fa-share"></i></a>
                   <a class = "btn btn-info btn-round" onclick="history.back()"><i class="fas fa-chevron-circle-left"></i> Back</a>
                </div>
             </div>
@@ -241,3 +242,60 @@
       </div>
    </div>
  </div>
+
+ <!--**********************-->
+<!--****Share Modal**** -->
+<!--**********************-->
+<div class="modal fade" id="shareModal" role="dialog">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+      <!-- Modal body-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Share: <%=foundUser.companyName%></h5>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body">
+            <div class="d-flex flex-column text-center">
+               <div class="col-md-12">
+                  <div class="shareButton">
+                     <!--Share Buttons-->
+                     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fhandyhire.us/users/<%=foundUser.username%>"><i class="fab fa-facebook"></i></a>
+                     <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhandyhire.us/users/<%=foundUser.username%>&text="><i class="fab fa-twitter"></i></a>
+                     <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fhandyhire.us/users/<%=foundUser.username%>&title=&summary=&source="><i class="fab fa-linkedin-in"></i></a>
+                     <a href="https://plus.google.com/share?url=http%3A%2F%2Fhandyhire.us/users/<%=foundUser.username%>"><i class="fab fa-google-plus"></i></a>
+                     <!--End of Share Buttons-->
+                  </div>
+               </div>
+               <!--Copy to Clipboard-->
+               <div class="col-md-12">
+                  <div class="clipboard">
+                     <div class="input-group">
+                        <input class = "form-control" type="text" value="www.handyhire.us/users/<%=foundUser.username%>" id="myInput">
+                        <div class="input-group-append">
+                           <button class="input-group-text" onclick="myFunction()">Copy text </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Script for Copy Clipboard-->
+               <script>
+                  function myFunction() {
+                    var copyText = document.getElementById("myInput");
+                    copyText.select();
+                    copyText.setSelectionRange(0, 99999)
+                    document.execCommand("copy");
+                    alert("Copied the text: " + copyText.value);
+                  }
+                  </script>
+               <!--End of CopyClipboard Script-->
+               <!--End of Copy to Clipboard-->
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+

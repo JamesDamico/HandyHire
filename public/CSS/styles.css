@@ -225,7 +225,7 @@ footer{
     border-radius: 10%;
 }
 
-/*Profile Modal*/
+/*Rating Modal*/
 .starRating:not(old){
     display        : inline-block;
     width          : 7.5em;
@@ -262,6 +262,55 @@ footer{
 .starRating:not(old) > label:hover ~ label:before,
 .starRating:not(:hover) > :checked ~ label:before{
     opacity : 1;
+}
+
+/*Share Modal*/
+.shareButton {
+    padding: 20px;
+    font-size: 40px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 10px;
+    border-radius: 10px;
+    color:#fff;
+}
+
+.shareButton a{
+   padding: 15px;
+}
+
+.fa:hover{
+    opacity: 0.7;
+}
+
+.fa-facebook{
+    background: #3b5998;
+    color:#fff;
+    padding:2px;
+    border-radius: 10%;
+}
+
+.fa-twitter{
+    background: #55acee;
+    color:#fff;
+    padding:2px;
+    border-radius: 10%;
+}
+
+.fa-linkedin-in{
+    background: #007bb5;
+    color:#fff;
+    padding:2px;
+    border-radius: 10%;
+
+}
+
+.fa-google-plus{
+    background: #DF4B3B;
+    color:#fff;
+    padding:2px;
+    border-radius: 10%;
+
 }
 
 /* Profile Body */
